@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Understanding Metaplasia</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .progress-bar {
+            transition: width 0.5s ease-in-out;
+        }
+        .lesson-card {
+            transition: all 0.3s ease;
+        }
+        .lesson-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        .test-option {
+            transition: all 0.2s ease;
+        }
+        .test-option:hover {
+            transform: scale(1.02);
+            background-color: #f0f9ff;
+        }
+        .highlight {
+            background-color: #fffbeb;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .mechanism-card {
+            border-left: 4px solid;
+        }
+        .cell-transition {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+        }
+        .cell-animation {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            transition: all 1.5s ease;
+        }
+        .metaplasia-diagram {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 200"><path d="M50,100 Q150,50 250,100 Q350,150 450,100" stroke="%233b82f6" fill="none" stroke-width="3"/><circle cx="50" cy="100" r="8" fill="%233b82f6"/><circle cx="250" cy="100" r="8" fill="%233b82f6"/><circle cx="450" cy="100" r="8" fill="%23ef4444"/><text x="50" y="130" font-family="Arial" font-size="12" text-anchor="middle" fill="%233b82f6">Normal Cell</text><text x="250" y="50" font-family="Arial" font-size="12" text-anchor="middle" fill="%233b82f6">Stem Cell</text><text x="450" y="130" font-family="Arial" font-size="12" text-anchor="middle" fill="%23ef4444">Metaplastic Cell</text></svg>');
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+    <!-- Navigation -->
+ <nav class="bg-white shadow-md sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-16 items-center">
+        <div class="flex items-center space-x-2">
+            <i><img src="logo.png" alt="logo" width="50px" ></i>
+            <span class="text-xl font-bold text-blue-600">MatEazy</span>
+        </div>
+        <div class="hidden md:flex space-x-6">
+          <a href="index.html" class="hover:text-blue-600 font-medium">Home</a>
+          <a href="courses.html" class="hover:text-blue-600 font-medium"><i class="fas fa-search"></i>Search</a>
+          <a href="http://buymeacoffee.com/MatEazy" class="bg-blue-600 text-white px-1 py-1 rounded-lg hover:bg-green-700 transition">Donate</a>
+        </div>
+        <!-- Mobile menu button -->
+        <div class="md:hidden">
+          <button id="menu-btn" class="text-gray-800 focus:outline-none">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
+              viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+      <!-- Mobile menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200">
+      <a href="index.html" class="block px-4 py-2 hover:bg-gray-100">Home</a>
+      <a href="courses.html" class="block px-4 py-2 hover:bg-gray-100"><i class="fas fa-search"></i>Search</a>
+      <a href="http://buymeacoffee.com/MatEazy" class="block px-4 py-2 bg-blue-600 text-white hover:bg-green-700 transition">Donate</a>
+    </div>   
+ </nav>
+    <div class="container mx-auto px-4 py-8 max-w-4xl">
+        <!-- Header -->
+        <header class="text-center mb-12">
+            <h1 class="text-4xl font-bold text-indigo-800 mb-2">Understanding Metaplasia</h1>
+            <p class="text-gray-600">A comprehensive lesson on cellular adaptation through cell type transformation</p>
+            <a href="cell-adaptation.html">
+                <div class="bg-gray-200 text-gray-700 px-6 py-2 rounded-lg hover:bg-gray-300 disabled:opacity-50">
+                   <i class="fas fa-arrow-left mr-2"></i> Cell adaptation
+                </div>
+            </a>
+            <div class="w-full bg-gray-200 rounded-full h-2.5 mt-6">
+                <div id="progress" class="progress-bar bg-indigo-600 h-2.5 rounded-full" style="width: 0%"></div>
+            </div>
+        </header>
+
+        <!-- Lesson Content -->
+        <div id="lesson-content" class="space-y-8">
+            <!-- Introduction -->
+            <div class="lesson-card bg-white p-6 rounded-xl shadow-md">
+                <div class="flex items-center mb-4">
+                    <div class="bg-indigo-100 p-3 rounded-full mr-4">
+                        <i class="fas fa-info-circle text-indigo-600 text-xl"></i>
+                    </div>
+                    <h2 class="text-2xl font-semibold text-gray-800">What is Metaplasia?</h2>
+                </div>
+                <p class="text-gray-700 mb-4">
+                    <span class="highlight">Metaplasia</span> is a cellular adaptation where one differentiated cell type is replaced by another mature cell type that is not normally present in that tissue. This transformation occurs in response to chronic stress or irritation.
+                </p>
+                <div class="cell-transition my-6">
+                    <div class="cell-animation metaplasia-diagram"></div>
+                </div>
+                <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-500">
+                    <p class="text-blue-800">
+                        <i class="fas fa-lightbulb mr-2"></i> <strong>Key Point:</strong> Metaplasia is a protective mechanism that makes tissues more resistant to environmental stress. It's generally reversible if the irritation is removed.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Mechanisms -->
+            <div class="lesson-card bg-white p-6 rounded-xl shadow-md">
+                <div class="flex items-center mb-4">
+                    <div class="bg-green-100 p-3 rounded-full mr-4">
+                        <i class="fas fa-cogs text-green-600 text-xl"></i>
+                    </div>
+                    <h2 class="text-2xl font-semibold text-gray-800">Mechanisms of Metaplasia</h2>
+                </div>
+                <p class="text-gray-700 mb-4">
+                    Metaplasia occurs through reprogramming of stem cells rather than transformation of differentiated cells:
+                </p>
+                
+                <div class="grid md:grid-cols-2 gap-4 mt-6">
+                    <div class="mechanism-card bg-red-50 p-4 rounded-lg border-l-red-500">
+                        <h3 class="font-semibold text-red-800 mb-2"><i class="fas fa-dna mr-2"></i>Stem Cell Reprogramming</h3>
+                        <p class="text-sm text-red-700">
+                            Stem cells that normally differentiate into the tissue's standard cell types alter their differentiation pathway in response to chronic stress.
+                        </p>
+                    </div>
+                    <div class="mechanism-card bg-purple-50 p-4 rounded-lg border-l-purple-500">
+                        <h3 class="font-semibold text-purple-800 mb-2"><i class="fas fa-code-branch mr-2"></i>Gene Expression Changes</h3>
+                        <p class="text-sm text-purple-700">
+                            Epigenetic modifications lead to altered gene expression patterns that favor the new cell type over the original one.
+                        </p>
+                    </div>
+                    <div class="mechanism-card bg-blue-50 p-4 rounded-lg border-l-blue-500">
+                        <h3 class="font-semibold text-blue-800 mb-2"><i class="fas fa-shield-alt mr-2"></i>Protective Adaptation</h3>
+                        <p class="text-sm text-blue-700">
+                            The new cell type is better suited to withstand the ongoing stress or irritation in the environment.
+                        </p>
+                    </div>
+                    <div class="mechanism-card bg-orange-50 p-4 rounded-lg border-l-orange-500">
+                        <h3 class="font-semibold text-orange-800 mb-2"><i class="fas fa-undo mr-2"></i>Potential Reversibility</h3>
+                        <p class="text-sm text-orange-700">
+                            If the stress is removed, stem cells may revert to producing the original cell type, reversing the metaplasia.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Clinical Examples -->
+            <div class="lesson-card bg-white p-6 rounded-xl shadow-md">
+                <div class="flex items-center mb-4">
+                    <div class="bg-teal-100 p-3 rounded-full mr-4">
+                        <i class="fas fa-stethoscope text-teal-600 text-xl"></i>
+                    </div>
+                    <h2 class="text-2xl font-semibold text-gray-800">Common Examples of Metaplasia</h2>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-6 mt-6">
+                    <div class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
+                        <div class="flex items-center mb-2">
+                            <div class="bg-teal-100 p-2 rounded-full mr-3">
+                                <i class="fas fa-stomach text-teal-600"></i>
+                            </div>
+                            <h3 class="font-semibold text-gray-800">Intestinal Metaplasia (Stomach)</h3>
+                        </div>
+                        <p class="text-sm text-gray-700 mb-2">
+                            Normal gastric epithelium is replaced by intestinal-type epithelium, often due to chronic <i>Helicobacter pylori</i> infection or persistent gastroesophageal reflux.
+                        </p>
+                        <div class="bg-red-50 p-2 rounded text-xs text-red-700">
+                            <i class="fas fa-exclamation-triangle mr-1"></i> Considered a precancerous condition requiring surveillance
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
+                        <div class="flex items-center mb-2">
+                            <div class="bg-blue-100 p-2 rounded-full mr-3">
+                                <i class="fas fa-lungs text-blue-600"></i>
+                            </div>
+                            <h3 class="font-semibold text-gray-800">Squamous Metaplasia (Respiratory)</h3>
+                        </div>
+                        <p class="text-sm text-gray-700 mb-2">
+                            Ciliated columnar epithelium transforms into squamous epithelium when exposed to cigarette smoke or other irritants.
+                        </p>
+                        <div class="bg-yellow-50 p-2 rounded text-xs text-yellow-700">
+                            <i class="fas fa-info-circle mr-1"></i> Reduces mucociliary clearance but may be reversible
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
+                        <div class="flex items-center mb-2">
+                            <div class="bg-purple-100 p-2 rounded-full mr-3">
+                                <i class="fas fa-bladder text-purple-600"></i>
+                            </div>
+                            <h3 class="font-semibold text-gray-800">Squamous Metaplasia (Bladder)</h3>
+                        </div>
+                        <p class="text-sm text-gray-700 mb-2">
+                            Transitional epithelium transforms into squamous epithelium in response to chronic irritation (e.g., from schistosomiasis or stones).
+                        </p>
+                    </div>
+                    
+                    <div class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
+                        <div class="flex items-center mb-2">
+                            <div class="bg-pink-100 p-2 rounded-full mr-3">
+                                <i class="fas fa-uterus text-pink-600"></i>
+                            </div>
+                            <h3 class="font-semibold text-gray-800">Osseous Metaplasia (Uterus)</h3>
+                        </div>
+                        <p class="text-sm text-gray-700 mb-2">
+                            Connective tissue transforms into bone in the endometrium, often following chronic inflammation or trauma.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Clinical Implications -->
+            <div class="lesson-card bg-white p-6 rounded-xl shadow-md">
+                <div class="flex items-center mb-4">
+                    <div class="bg-red-100 p-3 rounded-full mr-4">
+                        <i class="fas fa-exclamation-triangle text-red-600 text-xl"></i>
+                    </div>
+                    <h2 class="text-2xl font-semibold text-gray-800">Clinical Implications</h2>
+                </div>
+                
+                <div class="space-y-4">
+                    <div class="flex items-start">
+                        <div class="bg-gray-100 p-2 rounded-full mr-3 mt-1">
+                            <i class="fas fa-shield-alt text-gray-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-gray-800">Protective Function</h3>
+                            <p class="text-gray-700">
+                                Metaplasia is initially protective, replacing vulnerable cells with more resistant ones.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start">
+                        <div class="bg-gray-100 p-2 rounded-full mr-3 mt-1">
+                            <i class="fas fa-biohazard text-gray-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-gray-800">Cancer Risk</h3>
+                            <p class="text-gray-700">
+                                Persistent metaplasia increases cancer risk due to ongoing cellular stress and genetic instability.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start">
+                        <div class="bg-gray-100 p-2 rounded-full mr-3 mt-1">
+                            <i class="fas fa-undo text-gray-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-gray-800">Reversibility</h3>
+                            <p class="text-gray-700">
+                                Early metaplasia may reverse if the stimulus is removed, but chronic cases often become permanent.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start">
+                        <div class="bg-gray-100 p-2 rounded-full mr-3 mt-1">
+                            <i class="fas fa-eye text-gray-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-gray-800">Clinical Monitoring</h3>
+                            <p class="text-gray-700">
+                                Certain metaplasias (like intestinal metaplasia) require regular surveillance due to cancer risk.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-red-50 p-4 rounded-lg mt-6">
+                    <p class="text-red-800">
+                        <i class="fas fa-exclamation-circle mr-2"></i> <strong>Important:</strong> While metaplasia itself is not cancer, it creates an environment where cancer is more likely to develop if the stress persists.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Summary -->
+            <div class="lesson-card bg-white p-6 rounded-xl shadow-md border-2 border-indigo-200">
+                <div class="flex items-center mb-4">
+                    <div class="bg-indigo-100 p-3 rounded-full mr-4">
+                        <i class="fas fa-book-open text-indigo-600 text-xl"></i>
+                    </div>
+                    <h2 class="text-2xl font-semibold text-gray-800">Lesson Summary</h2>
+                </div>
+                
+                <div class="space-y-4 text-gray-700">
+                    <p>
+                        Metaplasia is an important adaptive response where one mature cell type replaces another to better withstand chronic stress or irritation. This occurs through stem cell reprogramming rather than direct transformation of differentiated cells.
+                    </p>
+                    <p>
+                        Common examples include intestinal metaplasia in the stomach and squamous metaplasia in the respiratory tract. While initially protective, persistent metaplasia can increase cancer risk and requires clinical monitoring in some cases.
+                    </p>
+                </div>
+                
+                <div class="mt-6 bg-indigo-50 p-4 rounded-lg">
+                    <h3 class="font-semibold text-indigo-800 mb-2"><i class="fas fa-brain mr-2"></i>Takeaway Concept:</h3>
+                    <p class="text-indigo-700">
+                        Metaplasia = Cell type replacement (adaptive) | Not cancer but may precede it
+                    </p>
+                </div>
+            </div>
+
+            <!-- Next Button -->
+            <div class="flex justify-center mt-10">
+                <button id="start-test-btn" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-8 rounded-full transition duration-300 transform hover:scale-105 shadow-lg">
+                    <i class="fas fa-graduation-cap mr-2"></i> Take the Knowledge Test
+                </button>
+            </div>
+        </div>
+
+        <!-- Test Section (Hidden Initially) -->
+        <div id="test-section" class="hidden">
+            <div class="bg-white p-8 rounded-xl shadow-lg">
+                <h2 class="text-3xl font-bold text-center text-indigo-800 mb-2">Metaplasia Knowledge Test</h2>
+                <p class="text-center text-gray-600 mb-8">Answer these 5 questions to test your understanding</p>
+                
+                <div id="test-questions" class="space-y-8">
+                    <!-- Question 1 -->
+                    <div class="test-question fade-in">
+                        <div class="flex items-center mb-4">
+                            <span class="bg-indigo-600 text-white font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3">1</span>
+                            <h3 class="text-xl font-semibold text-gray-800">What is the defining characteristic of metaplasia?</h3>
+                        </div>
+                        <div class="space-y-3 ml-11">
+                            <div class="test-option p-4 border border-gray-200 rounded-lg cursor-pointer" data-correct="false">
+                                <span class="font-medium">A.</span> Increase in cell number
+                            </div>
+                            <div class="test-option p-4 border border-gray-200 rounded-lg cursor-pointer" data-correct="false">
+                                <span class="font-medium">B.</span> Decrease in cell size
+                            </div>
+                            <div class="test-option p-4 border border-gray-200 rounded-lg cursor-pointer" data-correct="true">
+                                <span class="font-medium">C.</span> Replacement of one mature cell type with another
+                            </div>
+                            <div class="test-option p-4 border border-gray-200 rounded-lg cursor-pointer" data-correct="false">
+                                <span class="font-medium">D.</span> Development of immature, undifferentiated cells
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Question 2 -->
+                    <div class="test-question hidden fade-in">
+                        <div class="flex items-center mb-4">
+                            <span class="bg-indigo-600 text-white font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3">2</span>
+                            <h3 class="text-xl font-semibold text-gray-800">Which cells are primarily responsible for metaplastic changes?</h3>
+                        </div>
+                        <div class="space-y-3 ml-11">
+                            <div class="test-option p-4 border border-gray-200 rounded-lg cursor-pointer" data-correct="false">
+                                <span class="font-medium">A.</span> Terminally differentiated cells
+                            </div>
+                            <div class="test-option p-4 border border-gray-200 rounded-lg cursor-pointer" data-correct="true">
+                                <span class="font-medium">B.</span> Stem cells
+                            </div>
+                            <div class="test-option p-4 border border-gray-200 rounded-lg cursor-pointer" data-correct="false">
+                                <span class="font-medium">C.</span> Immune cells
+                            </div>
+                            <div class="test-option p-4 border border-gray-200 rounded-lg cursor-pointer" data-correct="false">
+                                <span class="font-medium">D.</span> Endothelial cells
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Question 3 -->
+                    <div class="test-question hidden fade-in">
+                        <div class="flex items-center mb-4">
+                            <span class="bg-indigo-600 text-white font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3">3</span>
+                            <h3 class="text-xl font-semibold text-gray-800">Which condition is most likely to cause intestinal metaplasia in the stomach?</h3>
+                        </div>
+                        <div class="space-y-3 ml-11">
+                            <div class="test-option p-4 border border-gray-200 rounded-lg cursor-pointer" data-correct="false">
+                                <span class="font-medium">A.</span> Acute viral infection
+                            </div>
+                            <div class="test-option p-4 border border-gray-200 rounded-lg cursor-pointer" data-correct="true">
+                                <span class="font-medium">B.</span> Chronic Helicobacter pylori infection
+                            </div>
+                            <div class="test-option p-4 border border-gray-200 rounded-lg cursor-pointer" data-correct="false">
+                                <span class="font-medium">C.</span> Vitamin B12 deficiency
+                            </div>
+                            <div class="test-option p-4 border border-gray-200 rounded-lg cursor-pointer" data-correct="false">
+                                <span class="font-medium">D.</span> Autoimmune gastritis
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Question 4 -->
+                    <div class="test-question hidden fade-in">
+                        <div class="flex items-center mb-4">
+                            <span class="bg-indigo-600 text-white font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3">4</span>
+                            <h3 class="text-xl font-semibold text-gray-800">What is the primary clinical significance of metaplasia?</h3>
+                        </div>
+                        <div class="space-y-3 ml-11">
+                            <div class="test-option p-4 border border-gray-200 rounded-lg cursor-pointer" data-correct="false">
+                                <span class="font-medium">A.</span> It always progresses directly to cancer
+                            </div>
+                            <div class="test-option p-4 border border-gray-200 rounded-lg cursor-pointer" data-correct="false">
+                                <span class="font-medium">B.</span> It causes immediate organ failure
+                            </div>
+                            <div class="test-option p-4 border border-gray-200 rounded-lg cursor-pointer" data-correct="true">
+                                <span class="font-medium">C.</span> It may predispose to cancer if the stress persists
+                            </div>
+                            <div class="test-option p-4 border border-gray-200 rounded-lg cursor-pointer" data-correct="false">
+                                <span class="font-medium">D.</span> It has no clinical significance
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Question 5 -->
+                    <div class="test-question hidden fade-in">
+                        <div class="flex items-center mb-4">
+                            <span class="bg-indigo-600 text-white font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3">5</span>
+                            <h3 class="text-xl font-semibold text-gray-800">Which statement about the reversibility of metaplasia is correct?</h3>
+                        </div>
+                        <div class="space-y-3 ml-11">
+                            <div class="test-option p-4 border border-gray-200 rounded-lg cursor-pointer" data-correct="false">
+                                <span class="font-medium">A.</span> Metaplasia is never reversible
+                            </div>
+                            <div class="test-option p-4 border border-gray-200 rounded-lg cursor-pointer" data-correct="false">
+                                <span class="font-medium">B.</span> All metaplastic changes are completely reversible
+                            </div>
+                            <div class="test-option p-4 border border-gray-200 rounded-lg cursor-pointer" data-correct="true">
+                                <span class="font-medium">C.</span> Early metaplasia may reverse if the stimulus is removed
+                            </div>
+                            <div class="test-option p-4 border border-gray-200 rounded-lg cursor-pointer" data-correct="false">
+                                <span class="font-medium">D.</span> Only intestinal metaplasia is reversible
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Navigation and Submit -->
+                <div class="flex justify-between mt-10">
+                    <button id="prev-btn" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-6 rounded-lg transition duration-300 hidden">
+                        <i class="fas fa-arrow-left mr-2"></i> Previous
+                    </button>
+                    <button id="next-btn" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-6 rounded-lg transition duration-300 ml-auto">
+                        Next <i class="fas fa-arrow-right ml-2"></i>
+                    </button>
+                    <button id="submit-btn" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-lg transition duration-300 hidden">
+                        Submit Test <i class="fas fa-paper-plane ml-2"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Section (Hidden Initially) -->
+        <div id="results-section" class="hidden">
+            <div class="bg-white p-8 rounded-xl shadow-lg text-center">
+                <div class="mb-6">
+                    <i class="fas fa-award text-6xl text-yellow-500 mb-4"></i>
+                    <h2 class="text-3xl font-bold text-indigo-800 mb-2">Test Results</h2>
+                    <p class="text-gray-600">Your performance on the Metaplasia Knowledge Test</p>
+                </div>
+                
+                <div class="bg-indigo-50 p-6 rounded-lg max-w-md mx-auto mb-8">
+                    <div class="text-5xl font-bold text-indigo-700 mb-2" id="score-display">0/5</div>
+                    <div class="h-4 bg-gray-200 rounded-full mb-4">
+                        <div id="score-bar" class="h-4 rounded-full bg-gradient-to-r from-blue-500 to-indigo-600" style="width: 0%"></div>
+                    </div>
+                    <p class="text-gray-700" id="result-message">Loading your results...</p>
+                </div>
+                
+                <div class="space-y-4 max-w-md mx-auto text-left mb-8 hidden" id="answers-review">
+                    <h3 class="font-semibold text-lg text-gray-800">Question Review:</h3>
+                    <div id="answers-container"></div>
+                </div>
+                
+                <div class="flex justify-center space-x-4">
+                    <button id="retake-btn" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-6 rounded-lg transition duration-300">
+                        <i class="fas fa-redo mr-2"></i> Retake Test
+                    </button>
+                    <button id="review-btn" class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-6 rounded-lg transition duration-300">
+                        <i class="fas fa-book mr-2"></i> Review Lesson
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Track current question and user answers
+        let currentQuestion = 0;
+        let userAnswers = [];
+        const totalQuestions = document.querySelectorAll('.test-question').length;
+        
+        // DOM Elements
+        const lessonContent = document.getElementById('lesson-content');
+        const testSection = document.getElementById('test-section');
+        const resultsSection = document.getElementById('results-section');
+        const startTestBtn = document.getElementById('start-test-btn');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const submitBtn = document.getElementById('submit-btn');
+        const retakeBtn = document.getElementById('retake-btn');
+        const reviewBtn = document.getElementById('review-btn');
+        const scoreDisplay = document.getElementById('score-display');
+        const scoreBar = document.getElementById('score-bar');
+        const resultMessage = document.getElementById('result-message');
+        const answersReview = document.getElementById('answers-review');
+        const answersContainer = document.getElementById('answers-container');
+        const progressBar = document.getElementById('progress');
+        
+        // Initialize test
+        function initTest() {
+            currentQuestion = 0;
+            userAnswers = Array(totalQuestions).fill(null);
+            showQuestion(currentQuestion);
+            updateNavigation();
+        }
+        
+        // Show specific question
+        function showQuestion(index) {
+            document.querySelectorAll('.test-question').forEach((q, i) => {
+                q.classList.toggle('hidden', i !== index);
+            });
+            
+            // Update progress bar
+            progressBar.style.width = `${((index + 1) / totalQuestions) * 100}%`;
+        }
+        
+        // Update navigation buttons
+        function updateNavigation() {
+            prevBtn.classList.toggle('hidden', currentQuestion === 0);
+            nextBtn.classList.toggle('hidden', currentQuestion === totalQuestions - 1);
+            submitBtn.classList.toggle('hidden', currentQuestion !== totalQuestions - 1);
+        }
+        
+        // Calculate score
+        function calculateScore() {
+            let score = 0;
+            const questions = document.querySelectorAll('.test-question');
+            
+            questions.forEach((q, index) => {
+                const options = q.querySelectorAll('.test-option');
+                const selectedOption = userAnswers[index];
+                
+                if (selectedOption !== null) {
+                    const isCorrect = options[selectedOption].getAttribute('data-correct') === 'true';
+                    if (isCorrect) score++;
+                }
+            });
+            
+            return score;
+        }
+        
+        // Show results
+        function showResults() {
+            const score = calculateScore();
+            const percentage = (score / totalQuestions) * 100;
+            
+            scoreDisplay.textContent = `${score}/${totalQuestions}`;
+            scoreBar.style.width = `${percentage}%`;
+            
+            // Set result message based on score
+            if (percentage >= 80) {
+                resultMessage.textContent = "Excellent! You have mastered the concepts of metaplasia.";
+            } else if (percentage >= 60) {
+                resultMessage.textContent = "Good job! You understand the basics but could review some concepts.";
+            } else {
+                resultMessage.textContent = "Keep practicing! Review the lesson and try again.";
+            }
+            
+            // Generate answer review
+            answersContainer.innerHTML = '';
+            document.querySelectorAll('.test-question').forEach((q, index) => {
+                const questionText = q.querySelector('h3').textContent;
+                const options = q.querySelectorAll('.test-option');
+                const selectedOption = userAnswers[index];
+                const isCorrect = selectedOption !== null ? 
+                    options[selectedOption].getAttribute('data-correct') === 'true' : false;
+                
+                const answerItem = document.createElement('div');
+                answerItem.className = `p-3 rounded-lg mb-2 ${isCorrect ? 'bg-green-50 border border-green-200' : 'bg-red-50 border border-red-200'}`;
+                
+                let answerHtml = `<div class="font-medium mb-1">${index + 1}. ${questionText}</div>`;
+                
+                if (selectedOption !== null) {
+                    const selectedText = options[selectedOption].textContent.trim();
+                    answerHtml += `<div class="text-sm ${isCorrect ? 'text-green-700' : 'text-red-700'}">Your answer: ${selectedText}</div>`;
+                    
+                    if (!isCorrect) {
+                        // Find correct answer
+                        let correctAnswer = '';
+                        options.forEach(opt => {
+                            if (opt.getAttribute('data-correct') === 'true') {
+                                correctAnswer = opt.textContent.trim();
+                            }
+                        });
+                        answerHtml += `<div class="text-sm text-green-700">Correct answer: ${correctAnswer}</div>`;
+                    }
+                } else {
+                    answerHtml += `<div class="text-sm text-red-700">You didn't answer this question</div>`;
+                }
+                
+                answerItem.innerHTML = answerHtml;
+                answersContainer.appendChild(answerItem);
+            });
+            
+            answersReview.classList.remove('hidden');
+        }
+        
+        // Event Listeners
+        startTestBtn.addEventListener('click', () => {
+            lessonContent.classList.add('hidden');
+            testSection.classList.remove('hidden');
+            resultsSection.classList.add('hidden');
+            initTest();
+        });
+        
+        prevBtn.addEventListener('click', () => {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                showQuestion(currentQuestion);
+                updateNavigation();
+            }
+        });
+        
+        nextBtn.addEventListener('click', () => {
+            if (currentQuestion < totalQuestions - 1) {
+                currentQuestion++;
+                showQuestion(currentQuestion);
+                updateNavigation();
+            }
+        });
+        
+        submitBtn.addEventListener('click', () => {
+            testSection.classList.add('hidden');
+            resultsSection.classList.remove('hidden');
+            showResults();
+        });
+        
+        retakeBtn.addEventListener('click', () => {
+            resultsSection.classList.add('hidden');
+            testSection.classList.remove('hidden');
+            initTest();
+        });
+        
+        reviewBtn.addEventListener('click', () => {
+            resultsSection.classList.add('hidden');
+            lessonContent.classList.remove('hidden');
+            progressBar.style.width = '0%';
+        });
+        
+        // Option selection
+        document.querySelectorAll('.test-option').forEach(option => {
+            option.addEventListener('click', function() {
+                const questionIndex = parseInt(this.closest('.test-question').querySelector('span').textContent) - 1;
+                const optionIndex = Array.from(this.parentNode.children).indexOf(this);
+                userAnswers[questionIndex] = optionIndex;
+                
+                // Update UI
+                this.parentNode.querySelectorAll('.test-option').forEach(opt => {
+                    opt.classList.remove('border-indigo-500', 'bg-indigo-50');
+                });
+                this.classList.add('border-indigo-500', 'bg-indigo-50');
+            });
+        });
+        
+        // Scroll progress for lesson
+        window.addEventListener('scroll', function() {
+            if (lessonContent.classList.contains('hidden')) return;
+            
+            const scrollTop = window.scrollY;
+            const docHeight = document.body.scrollHeight;
+            const winHeight = window.innerHeight;
+            const scrollPercent = scrollTop / (docHeight - winHeight);
+            const scrollPercentRounded = Math.round(scrollPercent * 100);
+            
+            progressBar.style.width = `${scrollPercentRounded}%`;
+        });
+    </script>
+    <!-- Add JavaScript for mobile menu toggle -->
+  <script>
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+  </script>
+</body>
+</html>

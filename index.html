@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MatEazy</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <!-- Navigation -->
+ <nav class="bg-white shadow-md sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-16 items-center">
+        <div class="flex items-center space-x-2">
+            <i><img src="logo.png" alt="logo" width="50px" ></i>
+            <span class="text-xl font-bold text-blue-600">MatEazy</span>
+        </div>
+        <div class="hidden md:flex space-x-6">
+          <a href="index.html" class="hover:text-blue-600 font-medium">Home</a>
+          <a href="courses.html" class="hover:text-blue-600 font-medium"><i class="fas fa-search"></i>Search</a>
+          <a href="http://buymeacoffee.com/MatEazy" class="bg-blue-600 text-white px-1 py-1 rounded-lg hover:bg-green-700 transition">Donate</a>
+        </div>
+        <!-- Mobile menu button -->
+        <div class="md:hidden">
+          <button id="menu-btn" class="text-gray-800 focus:outline-none">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
+              viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+      <!-- Mobile menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200">
+      <a href="index.html" class="block px-4 py-2 hover:bg-gray-100">Home</a>
+      <a href="courses.html" class="block px-4 py-2 hover:bg-gray-100"><i class="fas fa-search"></i>Search</a>
+      <a href="http://buymeacoffee.com/MatEazy" class="block px-4 py-2 bg-blue-600 text-white hover:bg-green-700 transition">Donate</a>
+    </div>    
+ </nav>
+
+  <!-- Hero Section -->
+  <section class="text-center py-20 bg-gradient-to-r from-blue-100 to-blue-200">
+    <h2 class="text-4xl font-extrabold mb-4">Make Medical Learning Fun & Easy</h2>
+    <p class="text-lg max-w-xl mx-auto mb-8">MatEazy is a non-profit platform that helps medical students understand basic subjects using interactive and gamified methods.</p>
+    <a href="courses.html" class="bg-blue-700 text-white px-6 py-3 rounded-full font-semibold hover:bg-blue-800 transition">Start Learning</a>
+  </section>
+
+  <!-- Subjects Section -->
+  <section id="subjects" class="py-16 px-4 max-w-6xl mx-auto">
+    <h3 class="text-2xl font-bold mb-8 text-center">Available Subjects ِAre</h3>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+     <a href="Pathology.html"><div class="bg-white shadow-md p-6 rounded-xl hover:shadow-lg transition cursor-pointer">
+        <i class="fas fa-virus text-2xl"></i>
+        <h4 class="text-xl font-bold mb-2 text-blue-700">Pathology</h4>
+        <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+        <p>Learn disease mechanisms through interactive case scenarios and virtual labs.</p>
+      </div>
+     </a>
+      <div class="bg-white shadow-md p-6 rounded-xl hover:shadow-lg transition cursor-pointer">
+        <i class="fas fa-bone text-2xl"></i>
+        <h4 class="text-xl font-bold mb-2 text-red-700">Anatomy</h4>
+        <i class="fas fa-times-circle text-red-600 text-xl"></i>
+        <p>Not available at the moment.</p>
+      </div>
+      <div class="bg-white shadow-md p-6 rounded-xl hover:shadow-lg transition cursor-pointer">
+        <i class="fas fa-heartbeat text-2xl"></i>
+        <h4 class="text-xl font-bold mb-2 text-red-700">Physiology</h4>
+        <i class="fas fa-times-circle text-red-600 text-xl"></i>
+        <p>Not available at the moment.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Learning Section -->
+  <section class="py-16 bg-white text-center px-4">
+    <h3 class="text-2xl font-bold mb-4">Why Gamified Learning?</h3>
+    <p class="max-w-3xl mx-auto mb-8">Traditional learning can be boring and overwhelming. MatEazy turns learning into an interactive experience—like a game—so you can enjoy studying and actually remember what you learn!</p>
+    <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Gamified Learning" class="w-32 mx-auto">
+  </section>
+
+  <!-- Donate Section -->
+  <section id="donate" class="py-16 px-4 bg-blue-50 text-center">
+    <h3 class="text-2xl font-bold mb-4">Support MatEazy</h3>
+    <p class="mb-6">MatEazy is a non-profit project built to help students everywhere. Your donation helps us keep the platform free, fun, and full of new features.</p>
+    <a href="http://buymeacoffee.com/MatEazy" class="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition">Donate Now</a>
+  </section>
+  <!-- Add JavaScript for mobile menu toggle -->
+  <script>
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+  </script>
+  
+
+  <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <i><img src="logo.png" alt="logo" width="50px" ></i>
+                        <span class="text-xl font-bold">MatEazy</span>
+                    </div>
+                    <p class="text-gray-400 mb-4">
+                        Making medical education engaging, interactive, and accessible to all.
+                    </p>
+                    <p class="text-gray-400 mb-4">Contact us: infomateazy@gmail.com</p>
+                    
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white transition">Home</a></li>
+                        <li><a href="courses.html" class="text-gray-400 hover:text-white transition"><i class="fas fa-search"></i>Search</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition"><i class="far fa-heart"></i>Donate</a></li>
+                    </ul>
+                </div>
+
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Youtube</h3>
+                    <p class="text-gray-400 mb-4">
+                        Subscribe to get updates on new pathology content and features.
+                    </p>
+                    <div class="flex">
+                        <a href="http://www.youtube.com/@MatEazy" class="text-gray-400 hover:text-white transition">
+                            <i class=" fab fa-youtube text-2xl text-red-600"></i>
+                        </a>
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500">
+                <p>© 2025 MatEazy. All rights reserved. A non-profit educational initiative.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <title>All Courses</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+   <!-- Navigation -->
+ <nav class="bg-white shadow-md sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-16 items-center">
+        <div class="flex items-center space-x-2">
+            <i><img src="logo.png" alt="logo" width="50px" ></i>
+            <span class="text-xl font-bold text-blue-600">MatEazy</span>
+        </div>
+        <div class="hidden md:flex space-x-6">
+          <a href="index.html" class="hover:text-blue-600 font-medium">Home</a>
+          <a href="courses.html" class="hover:text-blue-600 font-medium"><i class="fas fa-search"></i>Search</a>
+          <a href="http://buymeacoffee.com/MatEazy" class="bg-blue-600 text-white px-1 py-1 rounded-lg hover:bg-green-700 transition">Donate</a>
+        </div>
+        <!-- Mobile menu button -->
+        <div class="md:hidden">
+          <button id="menu-btn" class="text-gray-800 focus:outline-none">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
+              viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+      <!-- Mobile menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200">
+      <a href="index.html" class="block px-4 py-2 hover:bg-gray-100">Home</a>
+      <a href="courses.html" class="block px-4 py-2 hover:bg-gray-100"><i class="fas fa-search"></i>Search</a>
+      <a href="http://buymeacoffee.com/MatEazy" class="block px-4 py-2 bg-blue-600 text-white hover:bg-green-700 transition">Donate</a>
+    </div>    
+ </nav>
+
+  <div class="max-w-5xl mx-auto px-4 py-10">
+    <h1 class="text-3xl font-bold text-center text-blue-600 mb-6">All Available Courses</h1>
+
+    <!-- Search Bar -->
+    <div class="mb-6">
+      <input 
+        type="text" 
+        id="searchInput" 
+        placeholder="Search for a course..." 
+        class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500" 
+      />
+    </div>
+
+    <!-- Courses Grid -->
+    <div id="coursesGrid" class="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
+      <!-- Example cards (you can duplicate/change as needed) -->
+      <a href="cell-adaptation.html">
+        <div class="course-card bg-white rounded-xl p-4 shadow-md" data-title="Cellular Adaptations">
+          <div>
+            <img src="cellular-adaptation.png" alt="">
+          </div>
+         <h2 class="text-lg font-semibold">Cellular Adaptations</h2>
+         <p class="text-sm text-gray-600">Discover how cells adapt to their environment.</p>
+         <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">Pathology</span>
+         </div>
+       </div>
+      </a>
+      <!-- Add more courses here -->
+    </div>
+  </div>
+  
+
+  <!-- JavaScript for Live Search -->
+  <script>
+    const searchInput = document.getElementById("searchInput");
+    const courseCards = document.querySelectorAll(".course-card");
+
+    searchInput.addEventListener("keyup", function () {
+      const searchText = this.value.toLowerCase();
+
+      courseCards.forEach(card => {
+        const title = card.dataset.title.toLowerCase();
+        if (title.includes(searchText)) {
+          card.style.display = "block";
+        } else {
+          card.style.display = "none";
+        }
+      });
+    });
+  </script>
+  <!-- Add JavaScript for mobile menu toggle -->
+  <script>
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+  </script>
+
+
+</body>
+</html>
