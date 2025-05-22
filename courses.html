@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <title>All Courses</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" type="image/png" href="logo.png">
 </head>
 <body class="bg-gray-100">
    <!-- Navigation -->
@@ -14,7 +15,7 @@
       <div class="flex justify-between h-16 items-center">
         <div class="flex items-center space-x-2">
             <i><img src="logo.png" alt="logo" width="50px" ></i>
-            <span class="text-xl font-bold text-blue-600">MatEazy</span>
+            <a href="index.html"><span class="text-xl font-bold text-blue-600">MatEazy</span></a>
         </div>
         <div class="hidden md:flex space-x-6">
           <a href="index.html" class="hover:text-blue-600 font-medium">Home</a>
@@ -41,7 +42,7 @@
  </nav>
 
   <div class="max-w-5xl mx-auto px-4 py-10">
-    <h1 class="text-3xl font-bold text-center text-blue-600 mb-6">All Available Courses</h1>
+    <h1 class="text-3xl font-bold text-center text-blue-600 mb-6">All Available Topics</h1>
 
     <!-- Search Bar -->
     <div class="mb-6">
@@ -55,19 +56,263 @@
 
     <!-- Courses Grid -->
     <div id="coursesGrid" class="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
-      <!-- Example cards (you can duplicate/change as needed) -->
-      <a href="cell-adaptation.html">
-        <div class="course-card bg-white rounded-xl p-4 shadow-md" data-title="Cellular Adaptations">
-          <div>
-            <img src="cellular-adaptation.png" alt="">
+      <!-- Aplasia Card -->
+      <div class="course-card bg-white rounded-xl shadow-md overflow-hidden  hover:shadow-lg transition cursor-pointer" data-title="Aplasia">
+        <a href="Pathology/General-Pathology/Aplasia.html">
+          <div class="h-40 bg-gradient-to-br from-yellow-500 to-yellow-700 flex items-center justify-center">
+            <i class="fas fa-times-circle text-6xl text-white opacity-80"></i>
           </div>
-         <h2 class="text-lg font-semibold">Cellular Adaptations</h2>
-         <p class="text-sm text-gray-600">Discover how cells adapt to their environment.</p>
-         <div class="flex flex-wrap gap-2">
-            <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">Pathology</span>
+          <div class="p-6">
+            <h3 class="text-xl font-bold mb-3 text-gray-800">Aplasia</h3>
+            <p class="text-gray-600 mb-4">Complete (aplasia) or partial (hypoplasia) developmental failure of an organ or tissue.</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">Pathology</span>
+              <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">General pathology</span>
+              <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">Cellular adaptation</span>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <!-- Apoptosis Card -->
+      <div class="course-card bg-white rounded-xl shadow-md overflow-hidden  hover:shadow-lg transition cursor-pointer" data-title="Apoptosis">
+        <a href="Pathology/General-Pathology/Apoptosis.html">
+          <div class="h-40 bg-gradient-to-br from-green-500 to-green-700 flex items-center justify-center">
+            <i class="fas fa-dna text-6xl text-white opacity-80"></i>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold mb-3 text-gray-800">Apoptosis</h3>
+            <p class="text-gray-600 mb-4">Programmed cell death: mechanisms, regulation, and importance.</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">Pathology</span>
+              <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">General pathology</span>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <!-- Atrophy Card -->
+      <div class="course-card bg-white rounded-xl shadow-md overflow-hidden  hover:shadow-lg transition cursor-pointer" data-title="Atrophy">
+        <a href="Pathology/General-Pathology/Atrophy.html">
+          <div class="h-40 bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center">
+            <i class="fas fa-arrow-down text-6xl text-white opacity-80"></i>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold mb-3 text-gray-800">Atrophy</h3>
+            <p class="text-gray-600 mb-4">Decrease in cell size due to reduced workload, loss of innervation, or diminished blood supply.</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">Pathology</span>
+              <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">General pathology</span>
+              <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">Cellular adaptation</span>
+            </div>
+          </div>
+        </a>
+      </div>
+      <!-- Cellular Adaptation Card -->
+      <div class="course-card bg-white rounded-xl shadow-md overflow-hidden  hover:shadow-lg transition cursor-pointer" data-title="Cellular Adaptations">
+        <a href="Pathology/General-Pathology/cell-adaptation.html">
+          <div class="h-40 bg-gradient-to-br from-green-500 to-red-700 flex items-center justify-center">
+            <i class="fas fa-cell text-6xl text-white opacity-80"></i>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold mb-3 text-gray-800">Cellular Adaptation</h3>
+            <p class="text-gray-600 mb-4">Understand how cells respond to stress and injury.</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">Pathology</span>
+              <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">General pathology</span>
+            </div>
+          </div>
+        </a>
+      </div>
+      <!-- Cell Injury Reversible & Irreversible Card -->
+      <div class="course-card bg-white rounded-xl shadow-md overflow-hidden  hover:shadow-lg transition cursor-pointer" data-title="Cell Injury Reversible & Irreversible">
+        <a href="Pathology/General-Pathology/Cellular-Injury-Reversible-Irreversible.html">
+          <div class="h-40 bg-gradient-to-br from-red-500 to-red-700 flex items-center justify-center">
+            <i class="fas fa-undo text-6xl text-white opacity-80"></i>
          </div>
-       </div>
-      </a>
+          <div class="p-6">
+            <h3 class="text-xl font-bold mb-3 text-gray-800">Cell Injury Reversible & Irreversible</h3>
+            <p class="text-gray-600 mb-4">Understanding the mechanisms and consequences of cellular damage.</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">Pathology</span>
+              <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">General pathology</span>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <!-- Dysplasia Card -->
+      <div class="course-card bg-white rounded-xl shadow-md overflow-hidden  hover:shadow-lg transition cursor-pointer" data-title="Dysplasia">
+        <a href="Pathology/General-Pathology/Dysplasia.html">
+          <div class="h-40 bg-gradient-to-br from-orange-500 to-orange-700 flex items-center justify-center">
+            <i class="fas fa-exclamation-triangle text-6xl text-white opacity-80"></i>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold mb-3 text-gray-800">Dysplasia</h3>
+            <p class="text-gray-600 mb-4">Abnormal cellular growth with altered size, shape, and organization.</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">Pathology</span>
+              <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">General pathology</span>
+              <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">Cellular adaptation</span>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <!-- Free Radical Injury Card -->
+      <div class="course-card bg-white rounded-xl shadow-md overflow-hidden  hover:shadow-lg transition cursor-pointer" data-title="Free Radical Injury">
+        <a href="Pathology/General-Pathology/Free-Radical-Injury.html">
+          <div class="h-40 bg-gradient-to-br from-yellow-500 to-yellow-700 flex items-center justify-center">
+            <i class="fas fa-atom text-6xl text-white opacity-80"></i>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold mb-3 text-gray-800">Free Radical Injury</h3>
+            <p class="text-gray-600 mb-4">The science of oxidative stress and cellular damage.</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">Pathology</span>
+              <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">General pathology</span>
+            </div>
+          </div>
+        </a>
+      </div>
+      <!-- Hypoxia Card -->
+      <div class="course-card bg-white rounded-xl shadow-md overflow-hidden  hover:shadow-lg transition cursor-pointer" data-title="Hypoxia">
+        <a href="Pathology/General-Pathology/Hypoxia.html">
+          <div class="h-40 bg-gradient-to-br from-orange-500 to-orange-700 flex items-center justify-center">
+            <i class="fas fa-lungs text-6xl text-white opacity-80"></i>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold mb-3 text-gray-800">Hypoxia</h3>
+            <p class="text-gray-600 mb-4">Types, causes, effects, and clinical significance of oxygen deprivation.</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">Pathology</span>
+              <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">General pathology</span>
+            </div>
+          </div>
+        </a>
+      </div>
+      
+      <!-- Hypoplasia Card -->
+      <div class="course-card bg-white rounded-xl shadow-md overflow-hidden  hover:shadow-lg transition cursor-pointer" data-title="Hypoplasia">
+        <a href="Pathology/General-Pathology/Hypoplasia.html">
+          <div class="h-40 bg-gradient-to-br from-yellow-500 to-yellow-700 flex items-center justify-center">
+            <i class="fas fa-times-circle text-6xl text-white opacity-80"></i>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold mb-3 text-gray-800">Hypoplasia</h3>
+            <p class="text-gray-600 mb-4">Complete (aplasia) or partial (hypoplasia) developmental failure of an organ or tissue.</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">Pathology</span>
+              <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">General pathology</span>
+              <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">Cellular adaptation</span>
+            </div>
+          </div>
+        </a>
+      </div>
+      <!-- Hypertrophy Card -->
+      <div class="course-card bg-white rounded-xl shadow-md overflow-hidden  hover:shadow-lg transition cursor-pointer" data-title="Hypertrophy">
+        <a href="Pathology/General-Pathology/Hypertrophy.html">
+          <div class="h-40 bg-gradient-to-br from-green-500 to-green-700 flex items-center justify-center">
+            <i class="fas fa-arrow-up text-6xl text-white opacity-80"></i>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold mb-3 text-gray-800">Hypertrophy</h3>
+            <p class="text-gray-600 mb-4">Increase in cell size due to increased workload or hormonal stimulation.</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">Pathology</span>
+              <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">General pathology</span>
+              <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">Cellular adaptation</span>
+            </div>
+          </div>
+        </a>
+      </div>
+      <!-- Hyperplasia Card -->
+      <div class="course-card bg-white rounded-xl shadow-md overflow-hidden  hover:shadow-lg transition cursor-pointer" data-title="Hyperplasia">
+        <a href="Pathology/General-Pathology/Hyperplasia.html">
+          <div class="h-40 bg-gradient-to-br from-purple-500 to-purple-700 flex items-center justify-center">
+            <i class="fas fa-copy text-6xl text-white opacity-80"></i>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold mb-3 text-gray-800">Hyperplasia</h3>
+            <p class="text-gray-600 mb-4">Increase in cell number due to increased cell division in response to stimuli.</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">Pathology</span>
+              <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">General pathology</span>
+              <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">Cellular adaptation</span>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <!-- Inflammation Card -->
+      <div class="course-card bg-white rounded-xl shadow-md overflow-hidden  hover:shadow-lg transition cursor-pointer" data-title="Inflammation">
+        <a href="Pathology/General-Pathology/Inflammation.html">
+          <div class="h-40 bg-gradient-to-br from-pink-500 to-pink-700 flex items-center justify-center">
+            <i class="fas fa-shield-virus text-6xl text-white opacity-80"></i>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold mb-3 text-gray-800">Inflammation</h3>
+            <p class="text-gray-600 mb-4">Understanding the body's defense mechanism and its consequences.</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">Pathology</span>
+              <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">General pathology</span>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <!-- Metaplasia Card -->
+      <div class="course-card bg-white rounded-xl shadow-md overflow-hidden  hover:shadow-lg transition cursor-pointer" data-title="Metaplasia">
+        <a href="Pathology/General-Pathology/Metaplasia.html">
+          <div class="h-40 bg-gradient-to-br from-red-500 to-red-700 flex items-center justify-center">
+            <i class="fas fa-exchange-alt text-6xl text-white opacity-80"></i>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold mb-3 text-gray-800">Metaplasia</h3>
+            <p class="text-gray-600 mb-4">Replacement of one differentiated cell type with another in response to chronic irritation.</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">Pathology</span>
+              <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">General pathology</span>
+              <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">Cellular adaptation</span>
+            </div>
+          </div>
+        </a>
+      </div>
+      
+       <!-- Necrosis Card -->
+      <div class="course-card bg-white rounded-xl shadow-md overflow-hidden  hover:shadow-lg transition cursor-pointer" data-title="Necrosis">
+        <a href="Pathology/General-Pathology/Necrosis.html">
+          <div class="h-40 bg-gradient-to-br from-purple-500 to-purple-700 flex items-center justify-center">
+            <i class="fas fa-skull text-6xl text-white opacity-80"></i>
+            </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold mb-3 text-gray-800">Necrosis</h3>
+            <p class="text-gray-600 mb-4">Premature cell death: causes, types, diagnosis, and treatment.</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">Pathology</span>
+              <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">General pathology</span>
+            </div>
+          </div>
+        </a>
+      </div>
+      
+      <!-- Neoplasia Card -->
+      <div class="course-card bg-white rounded-xl shadow-md overflow-hidden  hover:shadow-lg transition cursor-pointer" data-title="Neoplasia">
+        <a href="Pathology/General-Pathology/Neoplasia.html">
+          <div class="h-40 bg-gradient-to-br from-yellow-500 to-red-700 flex items-center justify-center">
+            <i class="fas fa-biohazard text-6xl text-white opacity-80"></i>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold mb-3 text-gray-800">Neoplasia</h3>
+            <p class="text-gray-600 mb-4">Abnormal cell growth from normal cells to cancer.</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">Pathology</span>
+              <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">General pathology</span>
+            </div>
+          </div>
+        </a>
+      </div>
+
       <!-- Add more courses here -->
     </div>
   </div>
