@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Understanding Necrosis: Causes, Types, and Treatment</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="logo.png">
+    <style>
+        .progress-bar {
+            height: 6px;
+            background-color: #e5e7eb;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background-color: #3b82f6;
+            transition: width 0.3s ease;
+        }
+        
+        .lesson-card {
+            transition: all 0.3s ease;
+        }
+        
+        .lesson-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .necrosis-type-card {
+            border-left: 4px solid;
+            transition: all 0.3s ease;
+        }
+        
+        .necrosis-type-card:hover {
+            transform: translateX(5px);
+        }
+        
+        .test-option {
+            transition: all 0.2s ease;
+        }
+        
+        .test-option:hover {
+            background-color: #eef2ff;
+        }
+        
+        .test-option.selected {
+            background-color: #3b82f6;
+            color: white;
+        }
+        
+        .test-option.correct {
+            background-color: #10b981;
+            color: white;
+        }
+        
+        .test-option.incorrect {
+            background-color: #ef4444;
+            color: white;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .comparison-table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #e5e7eb;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        .comparison-table th {
+            background-color: #f3f4f6;
+            font-weight: 600;
+        }
+        
+        .comparison-table tr:nth-child(even) {
+            background-color: #f9fafb;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Navigation -->
+ <nav class="bg-white shadow-md sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-16 items-center">
+        <div class="flex items-center space-x-2">
+            <i><img src="logo.png" alt="logo" width="50px" ></i>
+            <a href="index.html"><span class="text-xl font-bold text-blue-600">MatEazy</span></a>
+        </div>
+        <div class="hidden md:flex space-x-6">
+          <a href="index.html" class="hover:text-blue-600 font-medium">Home</a>
+          <a href="courses.html" class="hover:text-blue-600 font-medium"><i class="fas fa-search"></i>Search</a>
+          <a href="http://buymeacoffee.com/MatEazy" class="bg-blue-600 text-white px-1 py-1 rounded-lg hover:bg-green-700 transition">Donate</a>
+        </div>
+        <!-- Mobile menu button -->
+        <div class="md:hidden">
+          <button id="menu-btn" class="text-gray-800 focus:outline-none">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
+              viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+      <!-- Mobile menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200">
+      <a href="index.html" class="block px-4 py-2 hover:bg-gray-100">Home</a>
+      <a href="courses.html" class="block px-4 py-2 hover:bg-gray-100"><i class="fas fa-search"></i>Search</a>
+      <a href="http://buymeacoffee.com/MatEazy" class="block px-4 py-2 bg-blue-600 text-white hover:bg-green-700 transition">Donate</a>
+    </div>    
+ </nav>
+    <div class="container mx-auto px-4 py-8 max-w-4xl">
+        <!-- Header -->
+        <header class="mb-8 text-center">
+            <h1 class="text-4xl font-bold text-blue-800 mb-2">Understanding Necrosis</h1>
+            <p class="text-gray-600">Premature cell death: causes, types, diagnosis, and treatment</p>
+            <a href="General-pathology.html">
+                <div class="bg-gray-200 text-gray-700 px-6 py-2 rounded-lg hover:bg-gray-300 disabled:opacity-50">
+                   <i class="fas fa-arrow-left mr-2"></i> General Pathology
+                </div>
+            </a>
+            <div class="progress-bar mt-6 w-full">
+                <div id="progress-fill" class="progress-fill" style="width: 0%"></div>
+            </div>
+        </header>
+        
+        <!-- Lesson Content -->
+        <div id="lesson-content">
+            <!-- Introduction -->
+            <div class="bg-white rounded-xl shadow-md overflow-hidden mb-8 lesson-card">
+                <div class="p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-blue-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-skull text-blue-600 text-xl"></i>
+                        </div>
+                        <h2 class="text-2xl font-semibold text-gray-800">Introduction to Necrosis</h2>
+                    </div>
+                    <p class="text-gray-700 mb-4">
+                        Necrosis is the premature death of cells and living tissue caused by factors like infection, toxins, or trauma. Unlike programmed cell death (apoptosis), necrosis is an unplanned process resulting from acute cellular injury.
+                    </p>
+                    
+                    <div class="grid md:grid-cols-2 gap-6 mb-6">
+                        <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-500">
+                            <h3 class="text-blue-800 font-medium mb-2"><i class="fas fa-lightbulb mr-2"></i>Key Characteristics:</h3>
+                            <ul class="list-disc pl-5 text-gray-700 space-y-2">
+                                <li>Cell swelling and membrane rupture</li>
+                                <li>Release of cellular contents</li>
+                                <li>Triggers inflammatory response</li>
+                                <li>Classic signs: redness, heat, swelling, pain</li>
+                            </ul>
+                        </div>
+                        <div class="bg-red-50 p-4 rounded-lg border-l-4 border-red-500">
+                            <h3 class="text-red-800 font-medium mb-2">Comparison with Apoptosis:</h3>
+                            <table class="comparison-table text-sm">
+                                <tr>
+                                    <th>Feature</th>
+                                    <th>Necrosis</th>
+                                    <th>Apoptosis</th>
+                                </tr>
+                                <tr>
+                                    <td>Process</td>
+                                    <td>Uncontrolled</td>
+                                    <td>Programmed</td>
+                                </tr>
+                                <tr>
+                                    <td>Inflammation</td>
+                                    <td>Yes</td>
+                                    <td>No</td>
+                                </tr>
+                                <tr>
+                                    <td>Cell Size</td>
+                                    <td>Swelling</td>
+                                    <td>Shrinkage</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Causes -->
+            <div class="bg-white rounded-xl shadow-md overflow-hidden mb-8 lesson-card">
+                <div class="p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-red-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-biohazard text-red-600 text-xl"></i>
+                        </div>
+                        <h2 class="text-2xl font-semibold text-gray-800">Causes of Necrosis</h2>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 gap-4 mb-6">
+                        <div class="necrosis-type-card bg-blue-50 p-4 rounded-lg border-l-blue-500">
+                            <h3 class="font-medium text-blue-800 mb-2 flex items-center">
+                                <i class="fas fa-bone-break mr-2"></i> Physical Trauma
+                            </h3>
+                            <p class="text-gray-700 text-sm">
+                                Crushing injuries, burns, frostbite that directly damage cell structures.
+                            </p>
+                        </div>
+                        
+                        <div class="necrosis-type-card bg-green-50 p-4 rounded-lg border-l-green-500">
+                            <h3 class="font-medium text-green-800 mb-2 flex items-center">
+                                <i class="fas fa-virus mr-2"></i> Infections
+                            </h3>
+                            <p class="text-gray-700 text-sm">
+                                Bacteria, viruses, fungi invading tissues or releasing harmful substances.
+                            </p>
+                        </div>
+                        
+                        <div class="necrosis-type-card bg-yellow-50 p-4 rounded-lg border-l-yellow-500">
+                            <h3 class="font-medium text-yellow-800 mb-2 flex items-center">
+                                <i class="fas fa-flask mr-2"></i> Toxins
+                            </h3>
+                            <p class="text-gray-700 text-sm">
+                                Snake venom, chemicals, radiation disrupting cellular processes.
+                            </p>
+                        </div>
+                        
+                        <div class="necrosis-type-card bg-purple-50 p-4 rounded-lg border-l-purple-500">
+                            <h3 class="font-medium text-purple-800 mb-2 flex items-center">
+                                <i class="fas fa-heartbeat mr-2"></i> Vascular Issues
+                            </h3>
+                            <p class="text-gray-700 text-sm">
+                                Arterial blockages, venous thrombosis reducing blood flow.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-red-50 p-4 rounded-lg border-l-4 border-red-500">
+                        <p class="text-red-800 font-medium">Common Example:</p>
+                        <p class="text-gray-700">
+                            Diabetic foot ulcers develop due to poor circulation and nerve damage, leading to tissue necrosis if untreated.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Types -->
+            <div class="bg-white rounded-xl shadow-md overflow-hidden mb-8 lesson-card">
+                <div class="p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-purple-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-layer-group text-purple-600 text-xl"></i>
+                        </div>
+                        <h2 class="text-2xl font-semibold text-gray-800">Types of Necrosis</h2>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 gap-4 mb-6">
+                        <div class="necrosis-type-card bg-blue-50 p-4 rounded-lg border-l-blue-500">
+                            <h3 class="font-medium text-blue-800 mb-2 flex items-center">
+                                <i class="fas fa-cheese mr-2"></i> Coagulative
+                            </h3>
+                            <p class="text-gray-700 text-sm">
+                                Most common type; protein denaturation preserves cell outlines. Seen in heart, kidney, liver.
+                            </p>
+                        </div>
+                        
+                        <div class="necrosis-type-card bg-red-50 p-4 rounded-lg border-l-red-500">
+                            <h3 class="font-medium text-red-800 mb-2 flex items-center">
+                                <i class="fas fa-tooth mr-2"></i> Liquefactive
+                            </h3>
+                            <p class="text-gray-700 text-sm">
+                                Tissue digested into liquid; common in brain or bacterial infections.
+                            </p>
+                        </div>
+                        
+                        <div class="necrosis-type-card bg-green-50 p-4 rounded-lg border-l-green-500">
+                            <h3 class="font-medium text-green-800 mb-2 flex items-center">
+                                <i class="fas fa-drumstick-bite mr-2"></i> Caseous
+                            </h3>
+                            <p class="text-gray-700 text-sm">
+                                Cheese-like appearance; characteristic of tuberculosis.
+                            </p>
+                        </div>
+                        
+                        <div class="necrosis-type-card bg-yellow-50 p-4 rounded-lg border-l-yellow-500">
+                            <h3 class="font-medium text-yellow-800 mb-2 flex items-center">
+                                <i class="fas fa-oil-can mr-2"></i> Fat
+                            </h3>
+                            <p class="text-gray-700 text-sm">
+                                Fatty tissue destruction; seen in pancreas or breast tissue.
+                            </p>
+                        </div>
+                        
+                        <div class="necrosis-type-card bg-indigo-50 p-4 rounded-lg border-l-indigo-500">
+                            <h3 class="font-medium text-indigo-800 mb-2 flex items-center">
+                                <i class="fas fa-band-aid mr-2"></i> Fibrinoid
+                            </h3>
+                            <p class="text-gray-700 text-sm">
+                                Immune complex deposition in blood vessels; seen in vasculitis.
+                            </p>
+                        </div>
+                        
+                        <div class="necrosis-type-card bg-pink-50 p-4 rounded-lg border-l-pink-500">
+                            <h3 class="font-medium text-pink-800 mb-2 flex items-center">
+                                <i class="fas fa-spider mr-2"></i> Gangrenous
+                            </h3>
+                            <p class="text-gray-700 text-sm">
+                                Combination of coagulative and liquefactive; often affects limbs.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Diagnosis -->
+            <div class="bg-white rounded-xl shadow-md overflow-hidden mb-8 lesson-card">
+                <div class="p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-indigo-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-stethoscope text-indigo-600 text-xl"></i>
+                        </div>
+                        <h2 class="text-2xl font-semibold text-gray-800">Diagnosis</h2>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 gap-6 mb-4">
+                        <div>
+                            <h3 class="text-lg font-medium text-gray-800 mb-2">Diagnostic Methods</h3>
+                            <ul class="list-disc pl-5 text-gray-700 space-y-2">
+                                <li><span class="font-medium">Clinical exam:</span> Signs of inflammation, tissue changes</li>
+                                <li><span class="font-medium">Imaging:</span> MRI detects tissue water changes</li>
+                                <li><span class="font-medium">Lab tests:</span> Inflammatory markers, organ-specific enzymes</li>
+                                <li><span class="font-medium">Biopsy:</span> Gold standard for definitive diagnosis</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-medium text-gray-800 mb-2">Pathology Workflow</h3>
+                            <ol class="list-decimal pl-5 text-gray-700 space-y-2">
+                                <li>Specimen collection</li>
+                                <li>Fixation and processing</li>
+                                <li>Sectioning and staining</li>
+                                <li>Microscopic examination</li>
+                                <li>Diagnosis and reporting</li>
+                            </ol>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-indigo-50 p-4 rounded-lg border-l-4 border-indigo-500">
+                        <p class="text-indigo-800 font-medium">Key Point:</p>
+                        <p class="text-gray-700">
+                            Early diagnosis is critical for effective management and preventing complications like sepsis or organ failure.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Treatment -->
+            <div class="bg-white rounded-xl shadow-md overflow-hidden mb-8 lesson-card">
+                <div class="p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-green-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-heartbeat text-green-600 text-xl"></i>
+                        </div>
+                        <h2 class="text-2xl font-semibold text-gray-800">Treatment Approaches</h2>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 gap-6 mb-4">
+                        <div>
+                            <h3 class="text-lg font-medium text-gray-800 mb-2">Medical Treatments</h3>
+                            <ul class="list-disc pl-5 text-gray-700 space-y-2">
+                                <li>Antibiotics for infections</li>
+                                <li>Improving blood supply</li>
+                                <li>Blood sugar control in diabetes</li>
+                                <li>Toxin elimination</li>
+                                <li>Hyperbaric oxygen therapy</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-medium text-gray-800 mb-2">Surgical Interventions</h3>
+                            <ul class="list-disc pl-5 text-gray-700 space-y-2">
+                                <li>Debridement (removal of dead tissue)</li>
+                                <li>Skin grafting for extensive wounds</li>
+                                <li>Bone remodeling procedures</li>
+                                <li>Amputation in severe cases</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-green-50 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="text-green-800 font-medium">Treatment Goals:</p>
+                        <div class="grid md:grid-cols-2 gap-2 mt-2 text-sm">
+                            <div class="flex items-center">
+                                <i class="fas fa-broom text-green-600 mr-2"></i>
+                                <span class="text-gray-700">Remove necrotic tissue</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-band-aid text-green-600 mr-2"></i>
+                                <span class="text-gray-700">Promote healing</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-virus-slash text-green-600 mr-2"></i>
+                                <span class="text-gray-700">Prevent infection</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-procedures text-green-600 mr-2"></i>
+                                <span class="text-gray-700">Restore function</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Complications & Prevention -->
+            <div class="bg-white rounded-xl shadow-md overflow-hidden mb-8 lesson-card">
+                <div class="p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-orange-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-exclamation-triangle text-orange-600 text-xl"></i>
+                        </div>
+                        <h2 class="text-2xl font-semibold text-gray-800">Complications & Prevention</h2>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 gap-6 mb-4">
+                        <div>
+                            <h3 class="text-lg font-medium text-gray-800 mb-2">Serious Complications</h3>
+                            <ul class="list-disc pl-5 text-gray-700 space-y-2">
+                                <li>Sepsis from infection spread</li>
+                                <li>Chronic non-healing wounds</li>
+                                <li>Disseminated intravascular coagulation</li>
+                                <li>Permanent loss of function</li>
+                                <li>Multiple organ failure</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-medium text-gray-800 mb-2">Prevention Strategies</h3>
+                            <ul class="list-disc pl-5 text-gray-700 space-y-2">
+                                <li>Proper wound care</li>
+                                <li>Chronic disease management</li>
+                                <li>Maintaining good circulation</li>
+                                <li>Avoiding toxin exposure</li>
+                                <li>Regular medical checkups</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-orange-50 p-4 rounded-lg border-l-4 border-orange-500">
+                        <p class="text-orange-800 font-medium">Prognosis Factors:</p>
+                        <div class="grid md:grid-cols-2 gap-2 mt-2 text-sm">
+                            <div class="flex items-center">
+                                <i class="fas fa-ruler text-orange-600 mr-2"></i>
+                                <span class="text-gray-700">Extent of necrosis</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-clock text-orange-600 mr-2"></i>
+                                <span class="text-gray-700">Time to treatment</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-heart text-orange-600 mr-2"></i>
+                                <span class="text-gray-700">Patient health status</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-lungs text-orange-600 mr-2"></i>
+                                <span class="text-gray-700">Organ affected</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Start Test Button -->
+            <div class="flex justify-center mb-8">
+                <button id="start-test-btn" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-8 rounded-lg shadow-md transition duration-300 flex items-center">
+                    <i class="fas fa-graduation-cap mr-2"></i> Take the Necrosis Knowledge Test
+                </button>
+            </div>
+        </div>
+        
+        <!-- Test Section (Hidden Initially) -->
+        <div id="test-section" class="hidden">
+            <div class="bg-white rounded-xl shadow-md overflow-hidden mb-8">
+                <div class="p-6">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-2xl font-semibold text-gray-800">Necrosis Knowledge Test</h2>
+                        <div class="bg-blue-100 text-blue-800 font-medium py-1 px-3 rounded-full">
+                            <span id="current-question">1</span>/5
+                        </div>
+                    </div>
+                    
+                    <div id="question-container" class="mb-6">
+                        <!-- Questions will be inserted here by JavaScript -->
+                    </div>
+                    
+                    <div class="flex justify-between">
+                        <button id="prev-btn" class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-6 rounded-lg transition duration-300 hidden">
+                            <i class="fas fa-arrow-left mr-2"></i> Previous
+                        </button>
+                        <button id="next-btn" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-lg transition duration-300">
+                            Next <i class="fas fa-arrow-right ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Results Section (Hidden Initially) -->
+        <div id="results-section" class="hidden">
+            <div class="bg-white rounded-xl shadow-md overflow-hidden mb-8 text-center p-8">
+                <div class="mb-6">
+                    <div class="w-24 h-24 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-trophy text-green-600 text-4xl"></i>
+                    </div>
+                    <h2 class="text-2xl font-semibold text-gray-800 mb-2">Test Completed!</h2>
+                    <p class="text-gray-600">Your score: <span id="score" class="font-bold text-blue-600">0</span>/5</p>
+                </div>
+                
+                <div class="max-w-md mx-auto mb-6">
+                    <div class="flex justify-between mb-1">
+                        <span class="text-sm font-medium text-gray-700">Performance</span>
+                        <span id="percentage" class="text-sm font-medium text-gray-700">0%</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2.5">
+                        <div id="results-progress" class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
+                    </div>
+                </div>
+                
+                <div class="grid md:grid-cols-1 gap-4 mb-8" id="answers-review">
+                    <!-- Answer review will be inserted here -->
+                </div>
+                
+                <div class="flex justify-center space-x-4">
+                    <button id="retake-btn" class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-6 rounded-lg transition duration-300">
+                        <i class="fas fa-redo mr-2"></i> Retake Test
+                    </button>
+                    <button id="back-to-lesson-btn" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-lg transition duration-300">
+                        <i class="fas fa-book mr-2"></i> Review Lesson
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Lesson progress tracking
+        const progressFill = document.getElementById('progress-fill');
+        const lessonContent = document.getElementById('lesson-content');
+        const testSection = document.getElementById('test-section');
+        const resultsSection = document.getElementById('results-section');
+        const startTestBtn = document.getElementById('start-test-btn');
+        const backToLessonBtn = document.getElementById('back-to-lesson-btn');
+        const retakeBtn = document.getElementById('retake-btn');
+        
+        // Track scroll progress
+        window.addEventListener('scroll', function() {
+            const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrollProgress = (scrollTop / scrollHeight) * 100;
+            progressFill.style.width = scrollProgress + '%';
+        });
+        
+        // Test questions and answers
+        const questions = [
+            {
+                question: "What is the key difference between necrosis and apoptosis?",
+                options: [
+                    "Necrosis is programmed cell death",
+                    "Apoptosis triggers inflammation",
+                    "Necrosis is uncontrolled and causes inflammation",
+                    "Both processes are identical"
+                ],
+                answer: 2,
+                explanation: "Necrosis is unplanned cell death that triggers inflammation, while apoptosis is programmed cell death that doesn't cause inflammation."
+            },
+            {
+                question: "Which type of necrosis is characterized by a cheese-like appearance?",
+                options: [
+                    "Coagulative necrosis",
+                    "Liquefactive necrosis",
+                    "Caseous necrosis",
+                    "Fat necrosis"
+                ],
+                answer: 2,
+                explanation: "Caseous necrosis has a cheese-like appearance and is characteristic of tuberculosis infections."
+            },
+            {
+                question: "What is the gold standard for diagnosing necrosis?",
+                options: [
+                    "Blood tests",
+                    "MRI imaging",
+                    "Tissue biopsy",
+                    "Physical examination"
+                ],
+                answer: 2,
+                explanation: "Tissue biopsy remains the gold standard as it allows direct microscopic examination of the affected tissue."
+            },
+            {
+                question: "Which treatment is most critical for managing necrotic wounds?",
+                options: [
+                    "Antibiotics alone",
+                    "Debridement of dead tissue",
+                    "Pain medication only",
+                    "Observation without intervention"
+                ],
+                answer: 1,
+                explanation: "Debridement (removal of dead tissue) is essential to allow healthy tissue to heal and prevent infection spread."
+            },
+            {
+                question: "What serious complication can result from untreated necrosis?",
+                options: [
+                    "Improved wound healing",
+                    "Sepsis and organ failure",
+                    "Reduced inflammation",
+                    "Enhanced immune function"
+                ],
+                answer: 1,
+                explanation: "Untreated necrosis can lead to sepsis (bloodstream infection) which may progress to life-threatening organ failure."
+            }
+        ];
+        
+        // Test variables
+        let currentQuestion = 0;
+        let userAnswers = Array(questions.length).fill(null);
+        let score = 0;
+        
+        // DOM elements for test
+        const questionContainer = document.getElementById('question-container');
+        const currentQuestionDisplay = document.getElementById('current-question');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const scoreDisplay = document.getElementById('score');
+        const percentageDisplay = document.getElementById('percentage');
+        const resultsProgress = document.getElementById('results-progress');
+        const answersReview = document.getElementById('answers-review');
+        
+        // Start test button
+        startTestBtn.addEventListener('click', function() {
+            lessonContent.classList.add('hidden');
+            testSection.classList.remove('hidden');
+            showQuestion(0);
+        });
+        
+        // Back to lesson button
+        backToLessonBtn.addEventListener('click', function() {
+            resultsSection.classList.add('hidden');
+            lessonContent.classList.remove('hidden');
+            window.scrollTo(0, 0);
+        });
+        
+        // Retake test button
+        retakeBtn.addEventListener('click', function() {
+            resultsSection.classList.add('hidden');
+            testSection.classList.remove('hidden');
+            currentQuestion = 0;
+            userAnswers = Array(questions.length).fill(null);
+            score = 0;
+            showQuestion(0);
+        });
+        
+        // Previous question button
+        prevBtn.addEventListener('click', function() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                showQuestion(currentQuestion);
+            }
+        });
+        
+        // Next question button
+        nextBtn.addEventListener('click', function() {
+            if (currentQuestion < questions.length - 1) {
+                currentQuestion++;
+                showQuestion(currentQuestion);
+            } else {
+                calculateResults();
+                testSection.classList.add('hidden');
+                resultsSection.classList.remove('hidden');
+                resultsSection.classList.add('fade-in');
+            }
+        });
+        
+        // Show question function
+        function showQuestion(index) {
+            currentQuestionDisplay.textContent = index + 1;
+            
+            // Update button visibility
+            prevBtn.classList.toggle('hidden', index === 0);
+            nextBtn.textContent = index === questions.length - 1 ? 'Submit' : 'Next';
+            nextBtn.innerHTML = index === questions.length - 1 ? 
+                'Submit <i class="fas fa-paper-plane ml-2"></i>' : 
+                'Next <i class="fas fa-arrow-right ml-2"></i>';
+            
+            // Display the question
+            const q = questions[index];
+            let optionsHtml = '';
+            
+            q.options.forEach((option, i) => {
+                const isSelected = userAnswers[index] === i;
+                optionsHtml += `
+                    <div class="test-option ${isSelected ? 'selected' : ''} p-4 mb-3 border border-gray-200 rounded-lg cursor-pointer" data-option="${i}">
+                        ${option}
+                    </div>
+                `;
+            });
+            
+            questionContainer.innerHTML = `
+                <h3 class="text-lg font-medium text-gray-800 mb-4">${q.question}</h3>
+                <div class="options-container">
+                    ${optionsHtml}
+                </div>
+            `;
+            
+            // Add event listeners to options
+            document.querySelectorAll('.test-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    const selectedOption = parseInt(this.getAttribute('data-option'));
+                    userAnswers[index] = selectedOption;
+                    
+                    // Update UI
+                    document.querySelectorAll('.test-option').forEach(opt => {
+                        opt.classList.remove('selected');
+                    });
+                    this.classList.add('selected');
+                });
+            });
+        }
+        
+        // Calculate results
+        function calculateResults() {
+            score = 0;
+            let reviewHtml = '';
+            
+            questions.forEach((q, i) => {
+                if (userAnswers[i] === q.answer) {
+                    score++;
+                }
+                
+                // Create answer review card
+                const isCorrect = userAnswers[i] === q.answer;
+                reviewHtml += `
+                    <div class="bg-${isCorrect ? 'green' : 'red'}-50 p-4 rounded-lg border-l-4 border-${isCorrect ? 'green' : 'red'}-500">
+                        <h4 class="font-medium text-gray-800 mb-2">Question ${i + 1}: ${q.question}</h4>
+                        <p class="text-sm mb-2 ${isCorrect ? 'text-green-700' : 'text-red-700'}">
+                            <i class="fas fa-${isCorrect ? 'check' : 'times'} mr-1"></i>
+                            Your answer: ${q.options[userAnswers[i]]}
+                        </p>
+                        <p class="text-sm text-gray-700">
+                            <span class="font-medium">Correct answer:</span> ${q.options[q.answer]}
+                        </p>
+                        <p class="text-xs text-gray-600 mt-2 italic">${q.explanation}</p>
+                    </div>
+                `;
+            });
+            
+            // Update results display
+            scoreDisplay.textContent = score;
+            const percentage = Math.round((score / questions.length) * 100);
+            percentageDisplay.textContent = percentage + '%';
+            resultsProgress.style.width = percentage + '%';
+            answersReview.innerHTML = reviewHtml;
+        }
+    </script>
+    <!-- Add JavaScript for mobile menu toggle -->
+  <script>
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+  </script>
+</body>
+</html>
