@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cellular Injury: Reversible vs Irreversible</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="../../logo.png">
+    <style>
+        .progress-bar {
+            height: 6px;
+            background-color: #e5e7eb;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background-color: #4f46e5;
+            transition: width 0.3s ease;
+        }
+        
+        .lesson-card {
+            transition: all 0.3s ease;
+        }
+        
+        .lesson-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .test-option {
+            transition: all 0.2s ease;
+        }
+        
+        .test-option:hover {
+            background-color: #eef2ff;
+        }
+        
+        .test-option.selected {
+            background-color: #4f46e5;
+            color: white;
+        }
+        
+        .test-option.correct {
+            background-color: #10b981;
+            color: white;
+        }
+        
+        .test-option.incorrect {
+            background-color: #ef4444;
+            color: white;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Navigation -->
+ <nav class="bg-white shadow-md sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-16 items-center">
+        <div class="flex items-center space-x-2">
+            <i><img src="../../logo.png" alt="logo" width="50px" ></i>
+            <a href="../../index.html"><span class="text-xl font-bold text-blue-600">MatEazy</span></a>
+        </div>
+        <div class="hidden md:flex space-x-6">
+          <a href="../../index.html" class="hover:text-blue-600 font-medium">Home</a>
+          <a href="../../courses.html" class="hover:text-blue-600 font-medium"><i class="fas fa-search"></i>Search</a>
+          <a href="http://buymeacoffee.com/MatEazy" class="bg-blue-600 text-white px-1 py-1 rounded-lg hover:bg-green-700 transition">Donate</a>
+        </div>
+        <!-- Mobile menu button -->
+        <div class="md:hidden">
+          <button id="menu-btn" class="text-gray-800 focus:outline-none">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
+              viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+      <!-- Mobile menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200">
+      <a href="../../index.html" class="block px-4 py-2 hover:bg-gray-100">Home</a>
+      <a href="../../courses.html" class="block px-4 py-2 hover:bg-gray-100"><i class="fas fa-search"></i>Search</a>
+      <a href="http://buymeacoffee.com/MatEazy" class="block px-4 py-2 bg-blue-600 text-white hover:bg-green-700 transition">Donate</a>
+    </div>    
+ </nav>
+    <div class="container mx-auto px-4 py-8 max-w-4xl">
+        <!-- Header -->
+        <header class="mb-8 text-center">
+            <h1 class="text-4xl font-bold text-indigo-800 mb-2">Cellular Injury: Reversible vs Irreversible</h1>
+            <p class="text-gray-600">Understanding the mechanisms and consequences of cellular damage</p>
+            <a href="General-pathology.html">
+                <div class="bg-gray-200 text-gray-700 px-6 py-2 rounded-lg hover:bg-gray-300 disabled:opacity-50">
+                   <i class="fas fa-arrow-left mr-2"></i> General Pathology
+                </div>
+            </a>
+            <div class="progress-bar mt-6 w-full">
+                <div id="progress-fill" class="progress-fill" style="width: 0%"></div>
+            </div>
+        </header>
+        
+        <!-- Lesson Content -->
+        <div id="lesson-content">
+            <div class="bg-white rounded-xl shadow-md overflow-hidden mb-8 lesson-card">
+                <div class="p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-indigo-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-info-circle text-indigo-600 text-xl"></i>
+                        </div>
+                        <h2 class="text-2xl font-semibold text-gray-800">Introduction to Cellular Injury</h2>
+                    </div>
+                    <p class="text-gray-700 mb-4">
+                        Cells constantly face various stressors that can lead to injury. Understanding the difference between reversible and irreversible injury is crucial in pathology, as it determines whether cells can recover or are destined to die.
+                    </p>
+                    <div class="bg-indigo-50 p-4 rounded-lg border-l-4 border-indigo-500">
+                        <p class="text-indigo-800 font-medium"><i class="fas fa-lightbulb mr-2"></i>Key Concept:</p>
+                        <p class="text-gray-700">
+                            Reversible cellular injury represents an early stage of damage where cells can recover if the stressor is removed. In this state, cellular damage is present but can be repaired if the stressor is removed in time.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-xl shadow-md overflow-hidden mb-8 lesson-card">
+                <div class="p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-green-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-undo text-green-600 text-xl"></i>
+                        </div>
+                        <h2 class="text-2xl font-semibold text-gray-800">Reversible Cellular Injury</h2>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <h3 class="text-lg font-medium text-gray-800 mb-2">Morphological Changes</h3>
+                            <ul class="list-disc pl-5 text-gray-700 space-y-2">
+                                <li>Plasma membrane blebs</li>
+                                <li>Mitochondrial swelling</li>
+                                <li>Dilated endoplasmic reticulum</li>
+                                <li>Overall cellular swelling</li>
+                                <li>Clumping of nuclear chromatin</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-medium text-gray-800 mb-2">Biochemical Changes</h3>
+                            <ul class="list-disc pl-5 text-gray-700 space-y-2">
+                                <li>Decreased ATP production</li>
+                                <li>Reduced protein synthesis</li>
+                                <li>Detachment of ribosomes from ER</li>
+                                <li>Activation of autophagy</li>
+                                <li>Maintained membrane integrity</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <h3 class="text-lg font-medium text-gray-800 mb-2">Common Patterns</h3>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div class="bg-blue-50 p-4 rounded-lg">
+                                <h4 class="font-medium text-blue-800 mb-1">Hydropic Change</h4>
+                                <p class="text-gray-700 text-sm">
+                                    Cellular swelling due to sodium-potassium pump failure, causing water influx and giving cells a pale, swollen appearance.
+                                </p>
+                            </div>
+                            <div class="bg-blue-50 p-4 rounded-lg">
+                                <h4 class="font-medium text-blue-800 mb-1">Fatty Change</h4>
+                                <p class="text-gray-700 text-sm">
+                                    Triglycerides accumulate in the cytoplasm, particularly in liver and heart cells that process large amounts of fat.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-green-50 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="text-green-800 font-medium">Causes of Reversible Injury:</p>
+                        <div class="grid md:grid-cols-2 gap-2 mt-2">
+                            <div class="flex items-center">
+                                <i class="fas fa-wind text-green-600 mr-2"></i>
+                                <span class="text-gray-700">Hypoxia (reduced oxygen delivery)</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-flask text-green-600 mr-2"></i>
+                                <span class="text-gray-700">Chemical toxins</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-virus text-green-600 mr-2"></i>
+                                <span class="text-gray-700">Infections</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-utensils text-green-600 mr-2"></i>
+                                <span class="text-gray-700">Nutritional imbalances</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-xl shadow-md overflow-hidden mb-8 lesson-card">
+                <div class="p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-red-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-times-circle text-red-600 text-xl"></i>
+                        </div>
+                        <h2 class="text-2xl font-semibold text-gray-800">Irreversible Cellular Injury</h2>
+                    </div>
+                    
+                    <p class="text-gray-700 mb-4">
+                        Irreversible cellular injury occurs when damage exceeds the cell's repair capacity, leading to cell death. These changes cannot be reversed even if the original injurious stimulus is removed.
+                    </p>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-lg font-medium text-gray-800 mb-3">Two Major Mechanisms of Cell Death</h3>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div class="bg-red-50 p-4 rounded-lg">
+                                <h4 class="font-medium text-red-800 mb-2 flex items-center">
+                                    <i class="fas fa-biohazard mr-2"></i> Necrosis
+                                </h4>
+                                <ul class="list-disc pl-5 text-gray-700 space-y-1 text-sm">
+                                    <li>Results from pathological injury</li>
+                                    <li>Cell swelling and membrane rupture</li>
+                                    <li>Release of cellular contents</li>
+                                    <li>Triggers inflammatory response</li>
+                                    <li>Nuclear changes: pycnosis, karyorexis, karyolysis</li>
+                                </ul>
+                            </div>
+                            <div class="bg-purple-50 p-4 rounded-lg">
+                                <h4 class="font-medium text-purple-800 mb-2 flex items-center">
+                                    <i class="fas fa-code-branch mr-2"></i> Apoptosis
+                                </h4>
+                                <ul class="list-disc pl-5 text-gray-700 space-y-1 text-sm">
+                                    <li>Programmed cell death (physiological)</li>
+                                    <li>Cell shrinkage and chromatin condensation</li>
+                                    <li>Membrane blebbing and apoptotic bodies</li>
+                                    <li>Phagocytosed without inflammation</li>
+                                    <li>Controlled, energy-dependent process</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-yellow-50 p-4 rounded-lg border-l-4 border-yellow-500">
+                        <p class="text-yellow-800 font-medium">Transition to Irreversible Injury:</p>
+                        <div class="grid md:grid-cols-2 gap-4 mt-2">
+                            <div>
+                                <h4 class="font-medium text-gray-800 mb-1">Critical Events</h4>
+                                <ul class="list-disc pl-5 text-gray-700 text-sm space-y-1">
+                                    <li>Massive calcium influx</li>
+                                    <li>Profound ATP depletion</li>
+                                    <li>Extensive membrane damage</li>
+                                    <li>Lysosomal rupture</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-gray-800 mb-1">Consequences</h4>
+                                <ul class="list-disc pl-5 text-gray-700 text-sm space-y-1">
+                                    <li>Enzyme activation degrading membranes</li>
+                                    <li>Energy production collapse</li>
+                                    <li>Point of no return reached</li>
+                                    <li>Cell death becomes inevitable</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="flex justify-center mb-8">
+                <button id="start-test-btn" class="bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-3 px-8 rounded-lg shadow-md transition duration-300 flex items-center">
+                    <i class="fas fa-graduation-cap mr-2"></i> Take the Test
+                </button>
+            </div>
+        </div>
+        
+        <!-- Test Section (Hidden Initially) -->
+        <div id="test-section" class="hidden">
+            <div class="bg-white rounded-xl shadow-md overflow-hidden mb-8">
+                <div class="p-6">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-2xl font-semibold text-gray-800">Test Your Knowledge</h2>
+                        <div class="bg-indigo-100 text-indigo-800 font-medium py-1 px-3 rounded-full">
+                            <span id="current-question">1</span>/5
+                        </div>
+                    </div>
+                    
+                    <div id="question-container" class="mb-6">
+                        <!-- Questions will be inserted here by JavaScript -->
+                    </div>
+                    
+                    <div class="flex justify-between">
+                        <button id="prev-btn" class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-6 rounded-lg transition duration-300 hidden">
+                            <i class="fas fa-arrow-left mr-2"></i> Previous
+                        </button>
+                        <button id="next-btn" class="bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-6 rounded-lg transition duration-300">
+                            Next <i class="fas fa-arrow-right ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Results Section (Hidden Initially) -->
+        <div id="results-section" class="hidden">
+            <div class="bg-white rounded-xl shadow-md overflow-hidden mb-8 text-center p-8">
+                <div class="mb-6">
+                    <div class="w-24 h-24 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-trophy text-green-600 text-4xl"></i>
+                    </div>
+                    <h2 class="text-2xl font-semibold text-gray-800 mb-2">Test Completed!</h2>
+                    <p class="text-gray-600">Your score: <span id="score" class="font-bold text-indigo-600">0</span>/5</p>
+                </div>
+                
+                <div class="max-w-md mx-auto mb-6">
+                    <div class="flex justify-between mb-1">
+                        <span class="text-sm font-medium text-gray-700">Performance</span>
+                        <span id="percentage" class="text-sm font-medium text-gray-700">0%</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2.5">
+                        <div id="results-progress" class="bg-indigo-600 h-2.5 rounded-full" style="width: 0%"></div>
+                    </div>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-4 mb-8" id="answers-review">
+                    <!-- Answer review will be inserted here -->
+                </div>
+                
+                <div class="flex justify-center space-x-4">
+                    <button id="retake-btn" class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-6 rounded-lg transition duration-300">
+                        <i class="fas fa-redo mr-2"></i> Retake Test
+                    </button>
+                    <button id="back-to-lesson-btn" class="bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-6 rounded-lg transition duration-300">
+                        <i class="fas fa-book mr-2"></i> Review Lesson
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Lesson progress tracking
+        const progressFill = document.getElementById('progress-fill');
+        const lessonContent = document.getElementById('lesson-content');
+        const testSection = document.getElementById('test-section');
+        const resultsSection = document.getElementById('results-section');
+        const startTestBtn = document.getElementById('start-test-btn');
+        const backToLessonBtn = document.getElementById('back-to-lesson-btn');
+        const retakeBtn = document.getElementById('retake-btn');
+        
+        // Track scroll progress
+        window.addEventListener('scroll', function() {
+            const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrollProgress = (scrollTop / scrollHeight) * 100;
+            progressFill.style.width = scrollProgress + '%';
+        });
+        
+        // Test questions and answers
+        const questions = [
+            {
+                question: "Which of the following is a characteristic of reversible cellular injury?",
+                options: [
+                    "Nuclear dissolution (karyolysis)",
+                    "Plasma membrane blebs",
+                    "Release of cellular contents",
+                    "Formation of apoptotic bodies"
+                ],
+                answer: 1,
+                explanation: "Plasma membrane blebs are characteristic of reversible injury, while the other options are features of irreversible injury (necrosis or apoptosis)."
+            },
+            {
+                question: "What is the most common pattern of reversible injury in liver cells?",
+                options: [
+                    "Caseous necrosis",
+                    "Hydropic change",
+                    "Fatty change",
+                    "Coagulative necrosis"
+                ],
+                answer: 2,
+                explanation: "Fatty change (steatosis) is common in liver cells due to their role in fat metabolism, though hydropic change is also seen in reversible injury."
+            },
+            {
+                question: "Which event marks the transition from reversible to irreversible cellular injury?",
+                options: [
+                    "Mild ATP depletion",
+                    "Temporary membrane blebbing",
+                    "Massive calcium influx",
+                    "Activation of autophagy"
+                ],
+                answer: 2,
+                explanation: "Massive calcium influx activates destructive enzymes and is a critical event in the transition to irreversible injury."
+            },
+            {
+                question: "How does apoptosis differ from necrosis?",
+                options: [
+                    "Apoptosis causes inflammation, necrosis does not",
+                    "Apoptosis is a controlled process, necrosis is uncontrolled",
+                    "Apoptosis results in cell swelling, necrosis in cell shrinkage",
+                    "Apoptosis is always pathological, necrosis can be physiological"
+                ],
+                answer: 1,
+                explanation: "Apoptosis is a controlled, programmed process that doesn't cause inflammation, while necrosis is uncontrolled and provokes inflammation."
+            },
+            {
+                question: "Which of the following would NOT cause reversible cellular injury?",
+                options: [
+                    "Mild hypoxia",
+                    "Vitamin deficiency",
+                    "Low-dose toxin exposure",
+                    "Complete ATP depletion"
+                ],
+                answer: 3,
+                explanation: "Complete ATP depletion leads to irreversible injury, while the other options can cause reversible damage if not too severe."
+            }
+        ];
+        
+        // Test variables
+        let currentQuestion = 0;
+        let userAnswers = Array(questions.length).fill(null);
+        let score = 0;
+        
+        // DOM elements for test
+        const questionContainer = document.getElementById('question-container');
+        const currentQuestionDisplay = document.getElementById('current-question');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const scoreDisplay = document.getElementById('score');
+        const percentageDisplay = document.getElementById('percentage');
+        const resultsProgress = document.getElementById('results-progress');
+        const answersReview = document.getElementById('answers-review');
+        
+        // Start test button
+        startTestBtn.addEventListener('click', function() {
+            lessonContent.classList.add('hidden');
+            testSection.classList.remove('hidden');
+            showQuestion(0);
+        });
+        
+        // Back to lesson button
+        backToLessonBtn.addEventListener('click', function() {
+            resultsSection.classList.add('hidden');
+            lessonContent.classList.remove('hidden');
+            window.scrollTo(0, 0);
+        });
+        
+        // Retake test button
+        retakeBtn.addEventListener('click', function() {
+            resultsSection.classList.add('hidden');
+            testSection.classList.remove('hidden');
+            currentQuestion = 0;
+            userAnswers = Array(questions.length).fill(null);
+            score = 0;
+            showQuestion(0);
+        });
+        
+        // Previous question button
+        prevBtn.addEventListener('click', function() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                showQuestion(currentQuestion);
+            }
+        });
+        
+        // Next question button
+        nextBtn.addEventListener('click', function() {
+            if (currentQuestion < questions.length - 1) {
+                currentQuestion++;
+                showQuestion(currentQuestion);
+            } else {
+                calculateResults();
+                testSection.classList.add('hidden');
+                resultsSection.classList.remove('hidden');
+                resultsSection.classList.add('fade-in');
+            }
+        });
+        
+        // Show question function
+        function showQuestion(index) {
+            currentQuestionDisplay.textContent = index + 1;
+            
+            // Update button visibility
+            prevBtn.classList.toggle('hidden', index === 0);
+            nextBtn.textContent = index === questions.length - 1 ? 'Submit' : 'Next';
+            nextBtn.innerHTML = index === questions.length - 1 ? 
+                'Submit <i class="fas fa-paper-plane ml-2"></i>' : 
+                'Next <i class="fas fa-arrow-right ml-2"></i>';
+            
+            // Display the question
+            const q = questions[index];
+            let optionsHtml = '';
+            
+            q.options.forEach((option, i) => {
+                const isSelected = userAnswers[index] === i;
+                optionsHtml += `
+                    <div class="test-option ${isSelected ? 'selected' : ''} p-4 mb-3 border border-gray-200 rounded-lg cursor-pointer" data-option="${i}">
+                        ${option}
+                    </div>
+                `;
+            });
+            
+            questionContainer.innerHTML = `
+                <h3 class="text-lg font-medium text-gray-800 mb-4">${q.question}</h3>
+                <div class="options-container">
+                    ${optionsHtml}
+                </div>
+            `;
+            
+            // Add event listeners to options
+            document.querySelectorAll('.test-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    const selectedOption = parseInt(this.getAttribute('data-option'));
+                    userAnswers[index] = selectedOption;
+                    
+                    // Update UI
+                    document.querySelectorAll('.test-option').forEach(opt => {
+                        opt.classList.remove('selected');
+                    });
+                    this.classList.add('selected');
+                });
+            });
+        }
+        
+        // Calculate results
+        function calculateResults() {
+            score = 0;
+            let reviewHtml = '';
+            
+            questions.forEach((q, i) => {
+                if (userAnswers[i] === q.answer) {
+                    score++;
+                }
+                
+                // Create answer review card
+                const isCorrect = userAnswers[i] === q.answer;
+                reviewHtml += `
+                    <div class="bg-${isCorrect ? 'green' : 'red'}-50 p-4 rounded-lg border-l-4 border-${isCorrect ? 'green' : 'red'}-500">
+                        <h4 class="font-medium text-gray-800 mb-2">Question ${i + 1}: ${q.question}</h4>
+                        <p class="text-sm mb-2 ${isCorrect ? 'text-green-700' : 'text-red-700'}">
+                            <i class="fas fa-${isCorrect ? 'check' : 'times'} mr-1"></i>
+                            Your answer: ${q.options[userAnswers[i]]}
+                        </p>
+                        <p class="text-sm text-gray-700">
+                            <span class="font-medium">Correct answer:</span> ${q.options[q.answer]}
+                        </p>
+                        <p class="text-xs text-gray-600 mt-2 italic">${q.explanation}</p>
+                    </div>
+                `;
+            });
+            
+            // Update results display
+            scoreDisplay.textContent = score;
+            const percentage = Math.round((score / questions.length) * 100);
+            percentageDisplay.textContent = percentage + '%';
+            resultsProgress.style.width = percentage + '%';
+            answersReview.innerHTML = reviewHtml;
+        }
+    </script>
+    <!-- Add JavaScript for mobile menu toggle -->
+  <script>
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+  </script>
+</body>
+</html>

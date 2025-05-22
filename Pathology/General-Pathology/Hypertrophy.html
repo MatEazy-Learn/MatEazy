@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Understanding Hypertrophy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .progress-bar {
+            transition: width 0.5s ease-in-out;
+        }
+        .lesson-card {
+            transition: all 0.3s ease;
+        }
+        .lesson-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        .test-option {
+            transition: all 0.2s ease;
+        }
+        .test-option:hover {
+            transform: scale(1.02);
+            background-color: #f0f9ff;
+        }
+        .highlight {
+            background-color: #fff8e1;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .comparison-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+        }
+        .cell-diagram {
+            position: relative;
+            height: 200px;
+        }
+        .normal-cell {
+            position: absolute;
+            left: 25%;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 80px;
+            height: 80px;
+            background-color: #93c5fd;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .hypertrophic-cell {
+            position: absolute;
+            right: 25%;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 140px;
+            height: 140px;
+            background-color: #3b82f6;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .arrow {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 24px;
+            color: #6b7280;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+    <!-- Navigation -->
+ <nav class="bg-white shadow-md sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-16 items-center">
+        <div class="flex items-center space-x-2">
+            <i><img src="../../logo.png" alt="logo" width="50px" ></i>
+            <span class="text-xl font-bold text-blue-600">MatEazy</span>
+        </div>
+        <div class="hidden md:flex space-x-6">
+          <a href="../../index.html" class="hover:text-blue-600 font-medium">Home</a>
+          <a href="../../courses.html" class="hover:text-blue-600 font-medium"><i class="fas fa-search"></i>Search</a>
+          <a href="http://buymeacoffee.com/MatEazy" class="bg-blue-600 text-white px-1 py-1 rounded-lg hover:bg-green-700 transition">Donate</a>
+        </div>
+        <!-- Mobile menu button -->
+        <div class="md:hidden">
+          <button id="menu-btn" class="text-gray-800 focus:outline-none">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
+              viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+      <!-- Mobile menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200">
+      <a href="../../index.html" class="block px-4 py-2 hover:bg-gray-100">Home</a>
+      <a href="../../courses.html" class="block px-4 py-2 hover:bg-gray-100"><i class="fas fa-search"></i>Search</a>
+      <a href="http://buymeacoffee.com/MatEazy" class="block px-4 py-2 bg-blue-600 text-white hover:bg-green-700 transition">Donate</a>
+    </div>   
+ </nav>
+    <div class="container mx-auto px-4 py-8 max-w-4xl">
+        <!-- Header -->
+        <header class="text-center mb-12">
+            <h1 class="text-4xl font-bold text-blue-800 mb-2">Understanding Hypertrophy</h1>
+            <p class="text-gray-600">Cellular adaptation through increased cell size</p>
+            <a href="cell-adaptation.html">
+                <div class="bg-gray-200 text-gray-700 px-6 py-2 rounded-lg hover:bg-gray-300 disabled:opacity-50">
+                   <i class="fas fa-arrow-left mr-2"></i> Cell adaptation
+                </div>
+            </a>
+            <div class="w-full bg-gray-200 rounded-full h-2.5 mt-6">
+                <div id="progress" class="progress-bar bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
+            </div>
+        </header>
+
+        <!-- Lesson Content -->
+        <div id="lesson-content" class="space-y-8">
+            <!-- Introduction -->
+            <div class="lesson-card bg-white p-6 rounded-xl shadow-md">
+                <div class="flex items-center mb-4">
+                    <div class="bg-blue-100 p-3 rounded-full mr-4">
+                        <i class="fas fa-info-circle text-blue-600 text-xl"></i>
+                    </div>
+                    <h2 class="text-2xl font-semibold text-gray-800">What is Hypertrophy?</h2>
+                </div>
+                <p class="text-gray-700 mb-4">
+                    <span class="highlight">Hypertrophy</span> is defined as an increase in the size of individual cells resulting in an enlarged organ or tissue without an increase in cell number. This occurs when cells synthesize more structural components including proteins, organelles, and cytoplasmic elements.
+                </p>
+                
+                <div class="cell-diagram my-6">
+                    <div class="normal-cell">Normal Cell</div>
+                    <div class="arrow"><i class="fas fa-arrow-right"></i></div>
+                    <div class="hypertrophic-cell">Hypertrophic Cell</div>
+                </div>
+                
+                <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-500">
+                    <p class="text-blue-800">
+                        <i class="fas fa-lightbulb mr-2"></i> <strong>Key Concept:</strong> Hypertrophy increases cell size (not number) through increased protein synthesis and organelle production, enhancing functional capacity.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Physiological vs Pathological -->
+            <div class="lesson-card bg-white p-6 rounded-xl shadow-md">
+                <div class="flex items-center mb-4">
+                    <div class="bg-green-100 p-3 rounded-full mr-4">
+                        <i class="fas fa-heartbeat text-green-600 text-xl"></i>
+                    </div>
+                    <h2 class="text-2xl font-semibold text-gray-800">Physiological vs Pathological Hypertrophy</h2>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-6 mt-6">
+                    <div class="comparison-card p-5 rounded-lg">
+                        <div class="flex items-center mb-3">
+                            <div class="bg-green-100 p-2 rounded-full mr-3">
+                                <i class="fas fa-thumbs-up text-green-600"></i>
+                            </div>
+                            <h3 class="font-semibold text-gray-800">Physiological Hypertrophy</h3>
+                        </div>
+                        <ul class="text-sm text-gray-700 space-y-2 pl-2">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mr-2 mt-1"></i>
+                                <span>Normal adaptive response to increased demand</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mr-2 mt-1"></i>
+                                <span>Enhances function without pathological changes</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mr-2 mt-1"></i>
+                                <span>Reversible with decreased demand</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mr-2 mt-1"></i>
+                                <span>Examples: Skeletal muscle growth from exercise, athlete's heart</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="comparison-card p-5 rounded-lg">
+                        <div class="flex items-center mb-3">
+                            <div class="bg-red-100 p-2 rounded-full mr-3">
+                                <i class="fas fa-exclamation-triangle text-red-600"></i>
+                            </div>
+                            <h3 class="font-semibold text-gray-800">Pathological Hypertrophy</h3>
+                        </div>
+                        <ul class="text-sm text-gray-700 space-y-2 pl-2">
+                            <li class="flex items-start">
+                                <i class="fas fa-times-circle text-red-500 mr-2 mt-1"></i>
+                                <span>Abnormal response to disease states</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-times-circle text-red-500 mr-2 mt-1"></i>
+                                <span>Leads to impaired function over time</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-times-circle text-red-500 mr-2 mt-1"></i>
+                                <span>Often irreversible without treatment</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-times-circle text-red-500 mr-2 mt-1"></i>
+                                <span>Examples: Cardiac hypertrophy from hypertension, hypertrophic cardiomyopathy</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Physiological Examples -->
+            <div class="lesson-card bg-white p-6 rounded-xl shadow-md">
+                <div class="flex items-center mb-4">
+                    <div class="bg-green-100 p-3 rounded-full mr-4">
+                        <i class="fas fa-dumbbell text-green-600 text-xl"></i>
+                    </div>
+                    <h2 class="text-2xl font-semibold text-gray-800">Physiological Hypertrophy Examples</h2>
+                </div>
+                
+                <div class="space-y-6">
+                    <div class="flex items-start">
+                        <div class="bg-green-100 p-2 rounded-full mr-4 mt-1">
+                            <i class="fas fa-running text-green-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-lg text-gray-800">Skeletal Muscle Hypertrophy</h3>
+                            <p class="text-gray-700 mt-2">
+                                During regular exercise training, muscle fibers increase in size through enhanced protein synthesis. This allows for greater force generation. Resistance training stimulates mTOR pathways leading to increased contractile proteins (actin and myosin) and sarcoplasmic expansion.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start">
+                        <div class="bg-green-100 p-2 rounded-full mr-4 mt-1">
+                            <i class="fas fa-heart text-green-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-lg text-gray-800">Athlete's Heart</h3>
+                            <p class="text-gray-700 mt-2">
+                                In endurance athletes, the left ventricle undergoes eccentric hypertrophy (chamber dilation) to accommodate increased blood volume. In strength athletes, concentric hypertrophy (wall thickening) occurs to generate greater contractile force. Both adaptations improve cardiac output.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start">
+                        <div class="bg-green-100 p-2 rounded-full mr-4 mt-1">
+                            <i class="fas fa-utensils text-green-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-lg text-gray-800">Uterine Hypertrophy During Pregnancy</h3>
+                            <p class="text-gray-700 mt-2">
+                                The uterus undergoes both hypertrophy (smooth muscle cell enlargement) and hyperplasia (cell number increase) during pregnancy. Estrogen and mechanical stretch stimulate growth to accommodate the developing fetus, increasing uterine weight from ~50g to ~1000g.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pathological Examples -->
+            <div class="lesson-card bg-white p-6 rounded-xl shadow-md">
+                <div class="flex items-center mb-4">
+                    <div class="bg-red-100 p-3 rounded-full mr-4">
+                        <i class="fas fa-heartbeat text-red-600 text-xl"></i>
+                    </div>
+                    <h2 class="text-2xl font-semibold text-gray-800">Pathological Hypertrophy Examples</h2>
+                </div>
+                
+                <div class="space-y-6">
+                    <div class="flex items-start">
+                        <div class="bg-red-100 p-2 rounded-full mr-4 mt-1">
+                            <i class="fas fa-tint text-red-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-lg text-gray-800">Left Ventricular Hypertrophy (LVH)</h3>
+                            <p class="text-gray-700 mt-2">
+                                Chronic hypertension increases afterload, forcing the left ventricle to work harder. Cardiomyocytes enlarge (concentric hypertrophy) initially as compensation, but eventually develop fibrosis, reduced compliance, and diastolic dysfunction. LVH increases risk of heart failure 2-3 fold.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start">
+                        <div class="bg-red-100 p-2 rounded-full mr-4 mt-1">
+                            <i class="fas fa-dna text-red-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-lg text-gray-800">Hypertrophic Cardiomyopathy (HCM)</h3>
+                            <p class="text-gray-700 mt-2">
+                                A genetic disorder (often sarcomere protein mutations) causing asymmetric septal hypertrophy. Myofibril disarray and fibrosis lead to diastolic dysfunction and potential outflow obstruction. HCM is the most common cause of sudden cardiac death in young athletes.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start">
+                        <div class="bg-red-100 p-2 rounded-full mr-4 mt-1">
+                            <i class="fas fa-lungs text-red-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-lg text-gray-800">Right Ventricular Hypertrophy</h3>
+                            <p class="text-gray-700 mt-2">
+                                Chronic lung diseases (COPD, pulmonary fibrosis) or pulmonary hypertension increase right ventricular afterload. The RV wall thickens to overcome increased pulmonary vascular resistance, but eventually fails (cor pulmonale) due to limited compensatory capacity.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cellular Mechanisms -->
+            <div class="lesson-card bg-white p-6 rounded-xl shadow-md">
+                <div class="flex items-center mb-4">
+                    <div class="bg-purple-100 p-3 rounded-full mr-4">
+                        <i class="fas fa-microscope text-purple-600 text-xl"></i>
+                    </div>
+                    <h2 class="text-2xl font-semibold text-gray-800">Cellular Mechanisms of Hypertrophy</h2>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-4 mt-6">
+                    <div class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
+                        <div class="flex items-center mb-2">
+                            <div class="bg-purple-100 p-2 rounded-full mr-3">
+                                <i class="fas fa-cogs text-purple-600"></i>
+                            </div>
+                            <h3 class="font-semibold text-gray-800">Mechanical Sensors</h3>
+                        </div>
+                        <p class="text-sm text-gray-700">
+                            Integrins, stretch-activated channels, and cytoskeletal elements detect mechanical stress, activating signaling pathways (FAK, ILK) that initiate hypertrophy.
+                        </p>
+                    </div>
+                    
+                    <div class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
+                        <div class="flex items-center mb-2">
+                            <div class="bg-blue-100 p-2 rounded-full mr-3">
+                                <i class="fas fa-project-diagram text-blue-600"></i>
+                            </div>
+                            <h3 class="font-semibold text-gray-800">Signaling Pathways</h3>
+                        </div>
+                        <p class="text-sm text-gray-700">
+                            PI3K/Akt/mTOR (physiological) and calcineurin/NFAT (pathological) pathways regulate protein synthesis and sarcomere organization.
+                        </p>
+                    </div>
+                    
+                    <div class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
+                        <div class="flex items-center mb-2">
+                            <div class="bg-green-100 p-2 rounded-full mr-3">
+                                <i class="fas fa-dna text-green-600"></i>
+                            </div>
+                            <h3 class="font-semibold text-gray-800">Gene Expression</h3>
+                        </div>
+                        <p class="text-sm text-gray-700">
+                            Fetal gene program reactivation (ANP, BNP, β-MHC) occurs in pathological hypertrophy, altering contractile protein isoforms.
+                        </p>
+                    </div>
+                    
+                    <div class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
+                        <div class="flex items-center mb-2">
+                            <div class="bg-red-100 p-2 rounded-full mr-3">
+                                <i class="fas fa-battery-three-quarters text-red-600"></i>
+                            </div>
+                            <h3 class="font-semibold text-gray-800">Energetics</h3>
+                        </div>
+                        <p class="text-sm text-gray-700">
+                            Pathological hypertrophy shifts from fatty acid to glucose metabolism and develops mitochondrial dysfunction, reducing ATP availability.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Summary -->
+            <div class="lesson-card bg-white p-6 rounded-xl shadow-md border-2 border-blue-200">
+                <div class="flex items-center mb-4">
+                    <div class="bg-blue-100 p-3 rounded-full mr-4">
+                        <i class="fas fa-book-open text-blue-600 text-xl"></i>
+                    </div>
+                    <h2 class="text-2xl font-semibold text-gray-800">Lesson Summary</h2>
+                </div>
+                
+                <div class="space-y-4 text-gray-700">
+                    <p>
+                        Hypertrophy represents cellular adaptation through increased size (not number) by synthesizing more proteins and organelles. Physiological hypertrophy (exercise, pregnancy) enhances function reversibly, while pathological hypertrophy (hypertension, cardiomyopathy) progresses to dysfunction.
+                    </p>
+                    <p>
+                        At the cellular level, mechanical sensors activate signaling pathways (mTOR, calcineurin) that regulate protein synthesis and gene expression. While beneficial in trained muscles, cardiac hypertrophy often signals disease progression requiring clinical intervention.
+                    </p>
+                    <p>
+                        Key distinctions include reversibility, functional consequences, and molecular signatures. Understanding these differences helps clinicians manage conditions like hypertension and guides athletes in optimizing training adaptations.
+                    </p>
+                </div>
+                
+                <div class="mt-6 bg-blue-50 p-4 rounded-lg">
+                    <h3 class="font-semibold text-blue-800 mb-2"><i class="fas fa-brain mr-2"></i>Key Concept:</h3>
+                    <p class="text-blue-700">
+                        Hypertrophy = Increased cell size | Physiological = Reversible/Adaptive | Pathological = Progressive/Dysfunctional
+                    </p>
+                </div>
+            </div>
+
+            <!-- Next Button -->
+            <div class="flex justify-center mt-10">
+                <button id="start-test-btn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full transition duration-300 transform hover:scale-105 shadow-lg">
+                    <i class="fas fa-graduation-cap mr-2"></i> Take the Knowledge Test
+                </button>
+            </div>
+        </div>
+
+        <!-- Test Section (Hidden Initially) -->
+        <div id="test-section" class="hidden">
+            <div class="bg-white p-8 rounded-xl shadow-lg">
+                <h2 class="text-3xl font-bold text-center text-blue-800 mb-2">Hypertrophy Knowledge Test</h2>
+                <p class="text-center text-gray-600 mb-8">Answer these 5 questions to test your understanding</p>
+                
+                <div id="test-questions" class="space-y-8">
+                    <!-- Question 1 -->
+                    <div class="test-question fade-in">
+                        <div class="flex items-center mb-4">
+                            <span class="bg-blue-600 text-white font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3">1</span>
+                            <h3 class="text-xl font-semibold text-gray-800">What is the defining characteristic of hypertrophy?</h3>
+                        </div>
+                        <div class="space-y-3 ml-11">
+                            <div class="test-option p-4 border border-gray-200 rounded-lg cursor-pointer" data-correct="false">
+                                <span class="font-medium">A.</span> Increased number of cells in a tissue
+                            </div>
+                            <div class="test-option p-4 border border-gray-200 rounded-lg cursor-pointer" data-correct="true">
+                                <span class="font-medium">B.</span> Increased size of individual cells
+                            </div>
+                            <div class="test-option p-4 border border-gray-200 rounded-lg cursor-pointer" data-correct="false">
+                                <span class="font-medium">C.</span> Replacement of one cell type with another
+                            </div>
+                            <div class="test-option p-4 border border-gray-200 rounded-lg cursor-pointer" data-correct="false">
+                                <span class="font-medium">D.</span> Decreased cellular protein content
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Question 2 -->
+                    <div class="test-question hidden fade-in">
+                        <div class="flex items-center mb-4">
+                            <span class="bg-blue-600 text-white font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3">2</span>
+                            <h3 class="text-xl font-semibold text-gray-800">Which of these is an example of physiological hypertrophy?</h3>
+                        </div>
+                        <div class="space-y-3 ml-11">
+                            <div class="test-option p-4 border border-gray-200 rounded-lg cursor-pointer" data-correct="true">
+                                <span class="font-medium">A.</span> Skeletal muscle growth from weight training
+                            </div>
+                            <div class="test-option p-4 border border-gray-200 rounded-lg cursor-pointer" data-correct="false">
+                                <span class="font-medium">B.</span> Left ventricular hypertrophy from hypertension
+                            </div>
+                            <div class="test-option p-4 border border-gray-200 rounded-lg cursor-pointer" data-correct="false">
+                                <span class="font-medium">C.</span> Right ventricular hypertrophy from pulmonary fibrosis
+                            </div>
+                            <div class="test-option p-4 border border-gray-200 rounded-lg cursor-pointer" data-correct="false">
+                                <span class="font-medium">D.</span> Hypertrophic cardiomyopathy from genetic mutation
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Question 3 -->
+                    <div class="test-question hidden fade-in">
+                        <div class="flex items-center mb-4">
+                            <span class="bg-blue-600 text-white font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3">3</span>
+                            <h3 class="text-xl font-semibold text-gray-800">What cellular change is characteristic of pathological cardiac hypertrophy?</h3>
+                        </div>
+                        <div class="space-y-3 ml-11">
+                            <div class="test-option p-4 border border-gray-200 rounded-lg cursor-pointer" data-correct="false">
+                                <span class="font-medium">A.</span> Increased mitochondrial biogenesis
+                            </div>
+                            <div class="test-option p-4 border border-gray-200 rounded-lg cursor-pointer" data-correct="false">
+                                <span class="font-medium">B.</span> Enhanced calcium handling
+                            </div>
+                            <div class="test-option p-4 border border-gray-200 rounded-lg cursor-pointer" data-correct="true">
+                                <span class="font-medium">C.</span> Reactivation of fetal gene programs
+                            </div>
+                            <div class="test-option p-4 border border-gray-200 rounded-lg cursor-pointer" data-correct="false">
+                                <span class="font-medium">D.</span> Decreased extracellular matrix deposition
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Question 4 -->
+                    <div class="test-question hidden fade-in">
+                        <div class="flex items-center mb-4">
+                            <span class="bg-blue-600 text-white font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3">4</span>
+                            <h3 class="text-xl font-semibold text-gray-800">Which signaling pathway is primarily associated with physiological hypertrophy?</h3>
+                        </div>
+                        <div class="space-y-3 ml-11">
+                            <div class="test-option p-4 border border-gray-200 rounded-lg cursor-pointer" data-correct="false">
+                                <span class="font-medium">A.</span> Calcineurin/NFAT pathway
+                            </div>
+                            <div class="test-option p-4 border border-gray-200 rounded-lg cursor-pointer" data-correct="true">
+                                <span class="font-medium">B.</span> PI3K/Akt/mTOR pathway
+                            </div>
+                            <div class="test-option p-4 border border-gray-200 rounded-lg cursor-pointer" data-correct="false">
+                                <span class="font-medium">C.</span> MAPK pathway
+                            </div>
+                            <div class="test-option p-4 border border-gray-200 rounded-lg cursor-pointer" data-correct="false">
+                                <span class="font-medium">D.</span> JAK/STAT pathway
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Question 5 -->
+                    <div class="test-question hidden fade-in">
+                        <div class="flex items-center mb-4">
+                            <span class="bg-blue-600 text-white font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3">5</span>
+                            <h3 class="text-xl font-semibold text-gray-800">How does hypertrophy differ from hyperplasia?</h3>
+                        </div>
+                        <div class="space-y-3 ml-11">
+                            <div class="test-option p-4 border border-gray-200 rounded-lg cursor-pointer" data-correct="false">
+                                <span class="font-medium">A.</span> Hypertrophy decreases organ size while hyperplasia increases it
+                            </div>
+                            <div class="test-option p-4 border border-gray-200 rounded-lg cursor-pointer" data-correct="false">
+                                <span class="font-medium">B.</span> Hypertrophy only occurs in pathological conditions
+                            </div>
+                            <div class="test-option p-4 border border-gray-200 rounded-lg cursor-pointer" data-correct="true">
+                                <span class="font-medium">C.</span> Hypertrophy increases cell size while hyperplasia increases cell number
+                            </div>
+                            <div class="test-option p-4 border border-gray-200 rounded-lg cursor-pointer" data-correct="false">
+                                <span class="font-medium">D.</span> They are essentially the same process
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Navigation and Submit -->
+                <div class="flex justify-between mt-10">
+                    <button id="prev-btn" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-6 rounded-lg transition duration-300 hidden">
+                        <i class="fas fa-arrow-left mr-2"></i> Previous
+                    </button>
+                    <button id="next-btn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg transition duration-300 ml-auto">
+                        Next <i class="fas fa-arrow-right ml-2"></i>
+                    </button>
+                    <button id="submit-btn" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-lg transition duration-300 hidden">
+                        Submit Test <i class="fas fa-paper-plane ml-2"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Section (Hidden Initially) -->
+        <div id="results-section" class="hidden">
+            <div class="bg-white p-8 rounded-xl shadow-lg text-center">
+                <div class="mb-6">
+                    <i class="fas fa-award text-6xl text-yellow-500 mb-4"></i>
+                    <h2 class="text-3xl font-bold text-blue-800 mb-2">Test Results</h2>
+                    <p class="text-gray-600">Your performance on the Hypertrophy Knowledge Test</p>
+                </div>
+                
+                <div class="bg-blue-50 p-6 rounded-lg max-w-md mx-auto mb-8">
+                    <div class="text-5xl font-bold text-blue-700 mb-2" id="score-display">0/5</div>
+                    <div class="h-4 bg-gray-200 rounded-full mb-4">
+                        <div id="score-bar" class="h-4 rounded-full bg-gradient-to-r from-blue-500 to-purple-600" style="width: 0%"></div>
+                    </div>
+                    <p class="text-gray-700" id="result-message">Loading your results...</p>
+                </div>
+                
+                <div class="space-y-4 max-w-md mx-auto text-left mb-8 hidden" id="answers-review">
+                    <h3 class="font-semibold text-lg text-gray-800">Question Review:</h3>
+                    <div id="answers-container"></div>
+                </div>
+                
+                <div class="flex justify-center space-x-4">
+                    <button id="retake-btn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg transition duration-300">
+                        <i class="fas fa-redo mr-2"></i> Retake Test
+                    </button>
+                    <button id="review-btn" class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-6 rounded-lg transition duration-300">
+                        <i class="fas fa-book mr-2"></i> Review Lesson
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Track current question and user answers
+        let currentQuestion = 0;
+        let userAnswers = [];
+        const totalQuestions = document.querySelectorAll('.test-question').length;
+        
+        // DOM Elements
+        const lessonContent = document.getElementById('lesson-content');
+        const testSection = document.getElementById('test-section');
+        const resultsSection = document.getElementById('results-section');
+        const startTestBtn = document.getElementById('start-test-btn');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const submitBtn = document.getElementById('submit-btn');
+        const retakeBtn = document.getElementById('retake-btn');
+        const reviewBtn = document.getElementById('review-btn');
+        const scoreDisplay = document.getElementById('score-display');
+        const scoreBar = document.getElementById('score-bar');
+        const resultMessage = document.getElementById('result-message');
+        const answersReview = document.getElementById('answers-review');
+        const answersContainer = document.getElementById('answers-container');
+        const progressBar = document.getElementById('progress');
+        
+        // Initialize test
+        function initTest() {
+            currentQuestion = 0;
+            userAnswers = Array(totalQuestions).fill(null);
+            showQuestion(currentQuestion);
+            updateNavigation();
+        }
+        
+        // Show specific question
+        function showQuestion(index) {
+            document.querySelectorAll('.test-question').forEach((q, i) => {
+                q.classList.toggle('hidden', i !== index);
+            });
+            
+            // Update progress bar
+            progressBar.style.width = `${((index + 1) / totalQuestions) * 100}%`;
+        }
+        
+        // Update navigation buttons
+        function updateNavigation() {
+            prevBtn.classList.toggle('hidden', currentQuestion === 0);
+            nextBtn.classList.toggle('hidden', currentQuestion === totalQuestions - 1);
+            submitBtn.classList.toggle('hidden', currentQuestion !== totalQuestions - 1);
+        }
+        
+        // Calculate score
+        function calculateScore() {
+            let score = 0;
+            const questions = document.querySelectorAll('.test-question');
+            
+            questions.forEach((q, index) => {
+                const options = q.querySelectorAll('.test-option');
+                const selectedOption = userAnswers[index];
+                
+                if (selectedOption !== null) {
+                    const isCorrect = options[selectedOption].getAttribute('data-correct') === 'true';
+                    if (isCorrect) score++;
+                }
+            });
+            
+            return score;
+        }
+        
+        // Show results
+        function showResults() {
+            const score = calculateScore();
+            const percentage = (score / totalQuestions) * 100;
+            
+            scoreDisplay.textContent = `${score}/${totalQuestions}`;
+            scoreBar.style.width = `${percentage}%`;
+            
+            // Set result message based on score
+            if (percentage >= 80) {
+                resultMessage.textContent = "Excellent! You have a strong understanding of hypertrophy concepts.";
+            } else if (percentage >= 60) {
+                resultMessage.textContent = "Good job! You understand the basics but could review some concepts.";
+            } else {
+                resultMessage.textContent = "Keep practicing! Review the lesson and try again.";
+            }
+            
+            // Generate answer review
+            answersContainer.innerHTML = '';
+            document.querySelectorAll('.test-question').forEach((q, index) => {
+                const questionText = q.querySelector('h3').textContent;
+                const options = q.querySelectorAll('.test-option');
+                const selectedOption = userAnswers[index];
+                const isCorrect = selectedOption !== null ? 
+                    options[selectedOption].getAttribute('data-correct') === 'true' : false;
+                
+                const answerItem = document.createElement('div');
+                answerItem.className = `p-3 rounded-lg mb-2 ${isCorrect ? 'bg-green-50 border border-green-200' : 'bg-red-50 border border-red-200'}`;
+                
+                let answerHtml = `<div class="font-medium mb-1">${index + 1}. ${questionText}</div>`;
+                
+                if (selectedOption !== null) {
+                    const selectedText = options[selectedOption].textContent.trim();
+                    answerHtml += `<div class="text-sm ${isCorrect ? 'text-green-700' : 'text-red-700'}">Your answer: ${selectedText}</div>`;
+                    
+                    if (!isCorrect) {
+                        // Find correct answer
+                        let correctAnswer = '';
+                        options.forEach(opt => {
+                            if (opt.getAttribute('data-correct') === 'true') {
+                                correctAnswer = opt.textContent.trim();
+                            }
+                        });
+                        answerHtml += `<div class="text-sm text-green-700">Correct answer: ${correctAnswer}</div>`;
+                    }
+                } else {
+                    answerHtml += `<div class="text-sm text-red-700">You didn't answer this question</div>`;
+                }
+                
+                answerItem.innerHTML = answerHtml;
+                answersContainer.appendChild(answerItem);
+            });
+            
+            answersReview.classList.remove('hidden');
+        }
+        
+        // Event Listeners
+        startTestBtn.addEventListener('click', () => {
+            lessonContent.classList.add('hidden');
+            testSection.classList.remove('hidden');
+            resultsSection.classList.add('hidden');
+            initTest();
+        });
+        
+        prevBtn.addEventListener('click', () => {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                showQuestion(currentQuestion);
+                updateNavigation();
+            }
+        });
+        
+        nextBtn.addEventListener('click', () => {
+            if (currentQuestion < totalQuestions - 1) {
+                currentQuestion++;
+                showQuestion(currentQuestion);
+                updateNavigation();
+            }
+        });
+        
+        submitBtn.addEventListener('click', () => {
+            testSection.classList.add('hidden');
+            resultsSection.classList.remove('hidden');
+            showResults();
+        });
+        
+        retakeBtn.addEventListener('click', () => {
+            resultsSection.classList.add('hidden');
+            testSection.classList.remove('hidden');
+            initTest();
+        });
+        
+        reviewBtn.addEventListener('click', () => {
+            resultsSection.classList.add('hidden');
+            lessonContent.classList.remove('hidden');
+            progressBar.style.width = '0%';
+        });
+        
+        // Option selection
+        document.querySelectorAll('.test-option').forEach(option => {
+            option.addEventListener('click', function() {
+                const questionIndex = parseInt(this.closest('.test-question').querySelector('span').textContent) - 1;
+                const optionIndex = Array.from(this.parentNode.children).indexOf(this);
+                userAnswers[questionIndex] = optionIndex;
+                
+                // Update UI
+                this.parentNode.querySelectorAll('.test-option').forEach(opt => {
+                    opt.classList.remove('border-blue-500', 'bg-blue-50');
+                });
+                this.classList.add('border-blue-500', 'bg-blue-50');
+            });
+        });
+        
+        // Scroll progress for lesson
+        window.addEventListener('scroll', function() {
+            if (lessonContent.classList.contains('hidden')) return;
+            
+            const scrollTop = window.scrollY;
+            const docHeight = document.body.scrollHeight;
+            const winHeight = window.innerHeight;
+            const scrollPercent = scrollTop / (docHeight - winHeight);
+            const scrollPercentRounded = Math.round(scrollPercent * 100);
+            
+            progressBar.style.width = `${scrollPercentRounded}%`;
+        });
+    </script>
+    <!-- Add JavaScript for mobile menu toggle -->
+  <script>
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+  </script>
+</body>
+</html>

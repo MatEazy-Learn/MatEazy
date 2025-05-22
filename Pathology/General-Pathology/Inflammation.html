@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inflammation: Acute vs Chronic</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="../../logo.png">
+    <style>
+        .progress-bar {
+            height: 6px;
+            background-color: #e5e7eb;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background-color: #3b82f6;
+            transition: width 0.3s ease;
+        }
+        
+        .lesson-card {
+            transition: all 0.3s ease;
+        }
+        
+        .lesson-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .cell-card {
+            border-left: 4px solid;
+            transition: all 0.3s ease;
+        }
+        
+        .cell-card:hover {
+            transform: translateX(5px);
+        }
+        
+        .test-option {
+            transition: all 0.2s ease;
+        }
+        
+        .test-option:hover {
+            background-color: #dbeafe;
+        }
+        
+        .test-option.selected {
+            background-color: #3b82f6;
+            color: white;
+        }
+        
+        .test-option.correct {
+            background-color: #10b981;
+            color: white;
+        }
+        
+        .test-option.incorrect {
+            background-color: #ef4444;
+            color: white;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .comparison-table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #e5e7eb;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        .comparison-table th {
+            background-color: #f3f4f6;
+            font-weight: 600;
+        }
+        
+        .comparison-table tr:nth-child(even) {
+            background-color: #f9fafb;
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: #3b82f6;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
+        
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            border: 4px solid #3b82f6;
+            border-radius: 50%;
+            top: 15px;
+            z-index: 1;
+        }
+        
+        .left {
+            left: 0;
+        }
+        
+        .right {
+            left: 50%;
+        }
+        
+        .left::after {
+            right: -10px;
+        }
+        
+        .right::after {
+            left: -10px;
+        }
+        
+        .timeline-content {
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Navigation -->
+ <nav class="bg-white shadow-md sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-16 items-center">
+        <div class="flex items-center space-x-2">
+            <i><img src="../../logo.png" alt="logo" width="50px" ></i>
+            <a href="../../index.html"><span class="text-xl font-bold text-blue-600">MatEazy</span></a>
+        </div>
+        <div class="hidden md:flex space-x-6">
+          <a href="../../index.html" class="hover:text-blue-600 font-medium">Home</a>
+          <a href="../../courses.html" class="hover:text-blue-600 font-medium"><i class="fas fa-search"></i>Search</a>
+          <a href="http://buymeacoffee.com/MatEazy" class="bg-blue-600 text-white px-1 py-1 rounded-lg hover:bg-green-700 transition">Donate</a>
+        </div>
+        <!-- Mobile menu button -->
+        <div class="md:hidden">
+          <button id="menu-btn" class="text-gray-800 focus:outline-none">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
+              viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+      <!-- Mobile menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200">
+      <a href="../../index.html" class="block px-4 py-2 hover:bg-gray-100">Home</a>
+      <a href="../../courses.html" class="block px-4 py-2 hover:bg-gray-100"><i class="fas fa-search"></i>Search</a>
+      <a href="http://buymeacoffee.com/MatEazy" class="block px-4 py-2 bg-blue-600 text-white hover:bg-green-700 transition">Donate</a>
+    </div>    
+ </nav>
+    <div class="container mx-auto px-4 py-8 max-w-4xl">
+        <!-- Header -->
+        <header class="mb-8 text-center">
+            <h1 class="text-4xl font-bold text-blue-800 mb-2">Inflammation: Acute vs Chronic</h1>
+            <p class="text-gray-600">Understanding the body's defense mechanism and its consequences</p>
+            <a href="General-pathology.html">
+                <div class="bg-gray-200 text-gray-700 px-6 py-2 rounded-lg hover:bg-gray-300 disabled:opacity-50">
+                   <i class="fas fa-arrow-left mr-2"></i> General Pathology
+                </div>
+            </a>
+            <div class="progress-bar mt-6 w-full">
+                <div id="progress-fill" class="progress-fill" style="width: 0%"></div>
+            </div>
+        </header>
+        
+        <!-- Lesson Content -->
+        <div id="lesson-content">
+            <!-- Introduction -->
+            <div class="bg-white rounded-xl shadow-md overflow-hidden mb-8 lesson-card">
+                <div class="p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-blue-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-shield-virus text-blue-600 text-xl"></i>
+                        </div>
+                        <h2 class="text-2xl font-semibold text-gray-800">Introduction to Inflammation</h2>
+                    </div>
+                    <p class="text-gray-700 mb-4">
+                        Inflammation is the body's natural defense mechanism against harmful stimuli such as pathogens, damaged cells, or irritants. The purpose of inflammation is threefold: to eliminate the initial cause of cell injury, clear out damaged cells and tissues, and initiate tissue repair.
+                    </p>
+                    
+                    <div class="grid md:grid-cols-2 gap-6 mb-6">
+                        <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-500">
+                            <h3 class="text-blue-800 font-medium mb-2"><i class="fas fa-lightbulb mr-2"></i>Key Components:</h3>
+                            <ul class="list-disc pl-5 text-gray-700 space-y-2">
+                                <li>Immune cells (neutrophils, macrophages)</li>
+                                <li>Blood vessels (vasodilation, increased permeability)</li>
+                                <li>Molecular mediators (cytokines, chemokines)</li>
+                                <li>Plasma proteins (complement, clotting factors)</li>
+                            </ul>
+                        </div>
+                        <div class="bg-purple-50 p-4 rounded-lg border-l-4 border-purple-500">
+                            <h3 class="text-purple-800 font-medium mb-2">Cardinal Signs:</h3>
+                            <ul class="list-disc pl-5 text-gray-700 space-y-2">
+                                <li>Rubor (redness)</li>
+                                <li>Calor (heat)</li>
+                                <li>Tumor (swelling)</li>
+                                <li>Dolor (pain)</li>
+                                <li>Functio laesa (loss of function)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-green-50 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="text-green-800 font-medium">Important Note:</p>
+                        <p class="text-gray-700">
+                            While inflammation is essential for healing, it can become problematic when dysregulated, leading to chronic conditions and tissue damage.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Acute Inflammation -->
+            <div class="bg-white rounded-xl shadow-md overflow-hidden mb-8 lesson-card">
+                <div class="p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-red-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-bolt text-red-600 text-xl"></i>
+                        </div>
+                        <h2 class="text-2xl font-semibold text-gray-800">Acute Inflammation</h2>
+                    </div>
+                    
+                    <p class="text-gray-700 mb-4">
+                        Acute inflammation is the initial, rapid response to harmful stimuli including pathogens, damaged cells, or irritants. It has a quick onset (minutes to hours) and short duration (hours to days), and is self-limiting with coordinated events to eliminate threats and begin healing.
+                    </p>
+                    
+                    <div class="timeline mb-6">
+                        <div class="timeline-item left">
+                            <div class="timeline-content">
+                                <h3 class="font-medium text-blue-800">Vascular Changes</h3>
+                                <p class="text-sm text-gray-600">Minutes to hours</p>
+                                <p class="text-gray-700 text-sm">Vasodilation, increased permeability, leukocyte recruitment</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item right">
+                            <div class="timeline-content">
+                                <h3 class="font-medium text-blue-800">Cellular Response</h3>
+                                <p class="text-sm text-gray-600">Hours to days</p>
+                                <p class="text-gray-700 text-sm">Neutrophil infiltration, phagocytosis, cytokine release</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item left">
+                            <div class="timeline-content">
+                                <h3 class="font-medium text-blue-800">Resolution</h3>
+                                <p class="text-sm text-gray-600">Days</p>
+                                <p class="text-gray-700 text-sm">Apoptosis of neutrophils, anti-inflammatory cytokines, tissue repair</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-3 gap-4 mb-6">
+                        <div class="cell-card bg-blue-50 p-4 rounded-lg border-l-blue-500">
+                            <h3 class="font-medium text-blue-800 mb-2 flex items-center">
+                                <i class="fas fa-ambulance mr-2"></i> Neutrophils
+                            </h3>
+                            <p class="text-gray-700 text-sm">
+                                First responders arriving within minutes to hours, phagocytose pathogens, release NETs, short-lived.
+                            </p>
+                        </div>
+                        
+                        <div class="cell-card bg-purple-50 p-4 rounded-lg border-l-purple-500">
+                            <h3 class="font-medium text-purple-800 mb-2 flex items-center">
+                                <i class="fas fa-trash-alt mr-2"></i> Macrophages
+                            </h3>
+                            <p class="text-gray-700 text-sm">
+                                Professional phagocytes that engulf pathogens and debris, release cytokines, derived from monocytes.
+                            </p>
+                        </div>
+                        
+                        <div class="cell-card bg-green-50 p-4 rounded-lg border-l-green-500">
+                            <h3 class="font-medium text-green-800 mb-2 flex items-center">
+                                <i class="fas fa-bell mr-2"></i> Mast Cells
+                            </h3>
+                            <p class="text-gray-700 text-sm">
+                                Tissue-resident sentinels that degranulate to release histamine and inflammatory mediators.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-yellow-50 p-4 rounded-lg border-l-4 border-yellow-500">
+                        <p class="text-yellow-800 font-medium">Resolution Phase:</p>
+                        <p class="text-gray-700">
+                            Involves specialized pro-resolving mediators (SPMs), neutrophil apoptosis, anti-inflammatory cytokines (IL-10, TGF-β), and tissue repair to restore homeostasis.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Chronic Inflammation -->
+            <div class="bg-white rounded-xl shadow-md overflow-hidden mb-8 lesson-card">
+                <div class="p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-indigo-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-clock text-indigo-600 text-xl"></i>
+                        </div>
+                        <h2 class="text-2xl font-semibold text-gray-800">Chronic Inflammation</h2>
+                    </div>
+                    
+                    <p class="text-gray-700 mb-4">
+                        Chronic inflammation persists for months or years, featuring macrophages, lymphocytes, and fibroblasts. These cells interact in complex networks that sustain the inflammatory state, leading to persistent inflammation, tissue damage, and ultimately fibrosis.
+                    </p>
+                    
+                    <div class="overflow-x-auto mb-6">
+                        <table class="comparison-table">
+                            <thead>
+                                <tr>
+                                    <th>Feature</th>
+                                    <th>Acute Inflammation</th>
+                                    <th>Chronic Inflammation</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Duration</td>
+                                    <td>Hours to days</td>
+                                    <td>Months to years</td>
+                                </tr>
+                                <tr>
+                                    <td>Primary Cells</td>
+                                    <td>Neutrophils</td>
+                                    <td>Macrophages, lymphocytes, fibroblasts</td>
+                                </tr>
+                                <tr>
+                                    <td>Onset</td>
+                                    <td>Rapid (minutes)</td>
+                                    <td>Gradual</td>
+                                </tr>
+                                <tr>
+                                    <td>Outcome</td>
+                                    <td>Resolution</td>
+                                    <td>Fibrosis, tissue destruction</td>
+                                </tr>
+                                <tr>
+                                    <td>Systemic Effects</td>
+                                    <td>Fever, leukocytosis</td>
+                                    <td>Fatigue, anemia, cachexia</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <h3 class="text-lg font-medium text-gray-800 mb-2">Cellular Players</h3>
+                            <ul class="list-disc pl-5 text-gray-700 space-y-2">
+                                <li><span class="font-medium">Macrophages:</span> Predominant cell type, secrete cytokines, form granulomas</li>
+                                <li><span class="font-medium">T lymphocytes:</span> CD4+ T helper cells coordinate response, CD8+ kill infected cells</li>
+                                <li><span class="font-medium">B cells:</span> Produce antibodies, form memory cells</li>
+                                <li><span class="font-medium">Fibroblasts:</span> Produce extracellular matrix, lead to fibrosis</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-medium text-gray-800 mb-2">Systemic Effects</h3>
+                            <ul class="list-disc pl-5 text-gray-700 space-y-2">
+                                <li>Atherosclerosis and cardiovascular disease</li>
+                                <li>Insulin resistance and type 2 diabetes</li>
+                                <li>Anemia of chronic disease</li>
+                                <li>Muscle wasting (cachexia)</li>
+                                <li>Fatigue and depression</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-red-50 p-4 rounded-lg border-l-4 border-red-500">
+                        <p class="text-red-800 font-medium">Metaflammation:</p>
+                        <p class="text-gray-700">
+                            Chronic low-grade inflammation in metabolic disorders like obesity and diabetes, where adipose tissue becomes an endocrine organ driving inflammation and insulin resistance.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Prevention Strategies -->
+            <div class="bg-white rounded-xl shadow-md overflow-hidden mb-8 lesson-card">
+                <div class="p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-green-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-heartbeat text-green-600 text-xl"></i>
+                        </div>
+                        <h2 class="text-2xl font-semibold text-gray-800">Prevention & Management</h2>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <h3 class="text-lg font-medium text-gray-800 mb-2">Dietary Approaches</h3>
+                            <ul class="list-disc pl-5 text-gray-700 space-y-2">
+                                <li>Anti-inflammatory diet (Mediterranean style)</li>
+                                <li>Rich in fruits, vegetables, whole grains</li>
+                                <li>Omega-3 fatty acids (fish, flaxseeds, walnuts)</li>
+                                <li>Polyphenols (berries, green tea, dark chocolate)</li>
+                                <li>Limit processed foods and sugars</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-medium text-gray-800 mb-2">Lifestyle Factors</h3>
+                            <ul class="list-disc pl-5 text-gray-700 space-y-2">
+                                <li>Regular physical activity (150+ min/week)</li>
+                                <li>Adequate sleep (7-9 hours nightly)</li>
+                                <li>Stress management (meditation, yoga)</li>
+                                <li>Maintain healthy weight</li>
+                                <li>Avoid smoking and excessive alcohol</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-purple-50 p-4 rounded-lg border-l-4 border-purple-500">
+                        <p class="text-purple-800 font-medium">Exercise Benefits:</p>
+                        <p class="text-gray-700">
+                            Regular physical activity has powerful anti-inflammatory effects through multiple mechanisms including reduced adipose tissue inflammation, increased anti-inflammatory cytokines, and improved insulin sensitivity.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Start Test Button -->
+            <div class="flex justify-center mb-8">
+                <button id="start-test-btn" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-8 rounded-lg shadow-md transition duration-300 flex items-center">
+                    <i class="fas fa-graduation-cap mr-2"></i> Take the Inflammation Knowledge Test
+                </button>
+            </div>
+        </div>
+        
+        <!-- Test Section (Hidden Initially) -->
+        <div id="test-section" class="hidden">
+            <div class="bg-white rounded-xl shadow-md overflow-hidden mb-8">
+                <div class="p-6">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-2xl font-semibold text-gray-800">Inflammation Knowledge Test</h2>
+                        <div class="bg-blue-100 text-blue-800 font-medium py-1 px-3 rounded-full">
+                            <span id="current-question">1</span>/5
+                        </div>
+                    </div>
+                    
+                    <div id="question-container" class="mb-6">
+                        <!-- Questions will be inserted here by JavaScript -->
+                    </div>
+                    
+                    <div class="flex justify-between">
+                        <button id="prev-btn" class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-6 rounded-lg transition duration-300 hidden">
+                            <i class="fas fa-arrow-left mr-2"></i> Previous
+                        </button>
+                        <button id="next-btn" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-lg transition duration-300">
+                            Next <i class="fas fa-arrow-right ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Results Section (Hidden Initially) -->
+        <div id="results-section" class="hidden">
+            <div class="bg-white rounded-xl shadow-md overflow-hidden mb-8 text-center p-8">
+                <div class="mb-6">
+                    <div class="w-24 h-24 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-trophy text-blue-600 text-4xl"></i>
+                    </div>
+                    <h2 class="text-2xl font-semibold text-gray-800 mb-2">Test Completed!</h2>
+                    <p class="text-gray-600">Your score: <span id="score" class="font-bold text-blue-600">0</span>/5</p>
+                </div>
+                
+                <div class="max-w-md mx-auto mb-6">
+                    <div class="flex justify-between mb-1">
+                        <span class="text-sm font-medium text-gray-700">Performance</span>
+                        <span id="percentage" class="text-sm font-medium text-gray-700">0%</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2.5">
+                        <div id="results-progress" class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
+                    </div>
+                </div>
+                
+                <div class="grid md:grid-cols-1 gap-4 mb-8" id="answers-review">
+                    <!-- Answer review will be inserted here -->
+                </div>
+                
+                <div class="flex justify-center space-x-4">
+                    <button id="retake-btn" class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-6 rounded-lg transition duration-300">
+                        <i class="fas fa-redo mr-2"></i> Retake Test
+                    </button>
+                    <button id="back-to-lesson-btn" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-lg transition duration-300">
+                        <i class="fas fa-book mr-2"></i> Review Lesson
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Lesson progress tracking
+        const progressFill = document.getElementById('progress-fill');
+        const lessonContent = document.getElementById('lesson-content');
+        const testSection = document.getElementById('test-section');
+        const resultsSection = document.getElementById('results-section');
+        const startTestBtn = document.getElementById('start-test-btn');
+        const backToLessonBtn = document.getElementById('back-to-lesson-btn');
+        const retakeBtn = document.getElementById('retake-btn');
+        
+        // Track scroll progress
+        window.addEventListener('scroll', function() {
+            const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrollProgress = (scrollTop / scrollHeight) * 100;
+            progressFill.style.width = scrollProgress + '%';
+        });
+        
+        // Test questions and answers
+        const questions = [
+            {
+                question: "Which of these is NOT a characteristic of acute inflammation?",
+                options: [
+                    "Quick onset (minutes to hours)",
+                    "Short duration (hours to days)",
+                    "Predominance of macrophages",
+                    "Self-limiting process"
+                ],
+                answer: 2,
+                explanation: "Acute inflammation is characterized by quick onset, short duration, and being self-limiting. It's dominated by neutrophils, not macrophages (which are predominant in chronic inflammation)."
+            },
+            {
+                question: "What is the primary function of neutrophils in acute inflammation?",
+                options: [
+                    "Produce antibodies",
+                    "Phagocytose pathogens and release NETs",
+                    "Secrete anti-inflammatory cytokines",
+                    "Form granulomas"
+                ],
+                answer: 1,
+                explanation: "Neutrophils are the first responders that phagocytose (engulf) pathogens and can release neutrophil extracellular traps (NETs) to contain infections."
+            },
+            {
+                question: "Which cell type bridges the innate and adaptive immune responses?",
+                options: [
+                    "Mast cells",
+                    "Neutrophils",
+                    "Dendritic cells",
+                    "Fibroblasts"
+                ],
+                answer: 2,
+                explanation: "Dendritic cells process antigens and present them to T cells, forming a crucial bridge between the innate (immediate) and adaptive (specific) immune responses."
+            },
+            {
+                question: "What is a key difference between acute and chronic inflammation?",
+                options: [
+                    "Acute inflammation lasts longer",
+                    "Chronic inflammation involves more neutrophils",
+                    "Chronic inflammation can lead to fibrosis",
+                    "Acute inflammation causes more systemic effects"
+                ],
+                answer: 2,
+                explanation: "Chronic inflammation can lead to fibrosis (scarring) due to prolonged activation of fibroblasts, while acute inflammation typically resolves without permanent tissue changes."
+            },
+            {
+                question: "Which of these is NOT a strategy to reduce chronic inflammation?",
+                options: [
+                    "Regular physical activity",
+                    "Anti-inflammatory diet rich in omega-3s",
+                    "Smoking cessation",
+                    "Increased consumption of processed foods"
+                ],
+                answer: 3,
+                explanation: "Processed foods tend to promote inflammation, while the other options (exercise, anti-inflammatory diet, and not smoking) help reduce chronic inflammation."
+            }
+        ];
+        
+        // Test variables
+        let currentQuestion = 0;
+        let userAnswers = Array(questions.length).fill(null);
+        let score = 0;
+        
+        // DOM elements for test
+        const questionContainer = document.getElementById('question-container');
+        const currentQuestionDisplay = document.getElementById('current-question');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const scoreDisplay = document.getElementById('score');
+        const percentageDisplay = document.getElementById('percentage');
+        const resultsProgress = document.getElementById('results-progress');
+        const answersReview = document.getElementById('answers-review');
+        
+        // Start test button
+        startTestBtn.addEventListener('click', function() {
+            lessonContent.classList.add('hidden');
+            testSection.classList.remove('hidden');
+            showQuestion(0);
+        });
+        
+        // Back to lesson button
+        backToLessonBtn.addEventListener('click', function() {
+            resultsSection.classList.add('hidden');
+            lessonContent.classList.remove('hidden');
+            window.scrollTo(0, 0);
+        });
+        
+        // Retake test button
+        retakeBtn.addEventListener('click', function() {
+            resultsSection.classList.add('hidden');
+            testSection.classList.remove('hidden');
+            currentQuestion = 0;
+            userAnswers = Array(questions.length).fill(null);
+            score = 0;
+            showQuestion(0);
+        });
+        
+        // Previous question button
+        prevBtn.addEventListener('click', function() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                showQuestion(currentQuestion);
+            }
+        });
+        
+        // Next question button
+        nextBtn.addEventListener('click', function() {
+            if (currentQuestion < questions.length - 1) {
+                currentQuestion++;
+                showQuestion(currentQuestion);
+            } else {
+                calculateResults();
+                testSection.classList.add('hidden');
+                resultsSection.classList.remove('hidden');
+                resultsSection.classList.add('fade-in');
+            }
+        });
+        
+        // Show question function
+        function showQuestion(index) {
+            currentQuestionDisplay.textContent = index + 1;
+            
+            // Update button visibility
+            prevBtn.classList.toggle('hidden', index === 0);
+            nextBtn.textContent = index === questions.length - 1 ? 'Submit' : 'Next';
+            nextBtn.innerHTML = index === questions.length - 1 ? 
+                'Submit <i class="fas fa-paper-plane ml-2"></i>' : 
+                'Next <i class="fas fa-arrow-right ml-2"></i>';
+            
+            // Display the question
+            const q = questions[index];
+            let optionsHtml = '';
+            
+            q.options.forEach((option, i) => {
+                const isSelected = userAnswers[index] === i;
+                optionsHtml += `
+                    <div class="test-option ${isSelected ? 'selected' : ''} p-4 mb-3 border border-gray-200 rounded-lg cursor-pointer" data-option="${i}">
+                        ${option}
+                    </div>
+                `;
+            });
+            
+            questionContainer.innerHTML = `
+                <h3 class="text-lg font-medium text-gray-800 mb-4">${q.question}</h3>
+                <div class="options-container">
+                    ${optionsHtml}
+                </div>
+            `;
+            
+            // Add event listeners to options
+            document.querySelectorAll('.test-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    const selectedOption = parseInt(this.getAttribute('data-option'));
+                    userAnswers[index] = selectedOption;
+                    
+                    // Update UI
+                    document.querySelectorAll('.test-option').forEach(opt => {
+                        opt.classList.remove('selected');
+                    });
+                    this.classList.add('selected');
+                });
+            });
+        }
+        
+        // Calculate results
+        function calculateResults() {
+            score = 0;
+            let reviewHtml = '';
+            
+            questions.forEach((q, i) => {
+                if (userAnswers[i] === q.answer) {
+                    score++;
+                }
+                
+                // Create answer review card
+                const isCorrect = userAnswers[i] === q.answer;
+                reviewHtml += `
+                    <div class="bg-${isCorrect ? 'green' : 'red'}-50 p-4 rounded-lg border-l-4 border-${isCorrect ? 'green' : 'red'}-500">
+                        <h4 class="font-medium text-gray-800 mb-2">Question ${i + 1}: ${q.question}</h4>
+                        <p class="text-sm mb-2 ${isCorrect ? 'text-green-700' : 'text-red-700'}">
+                            <i class="fas fa-${isCorrect ? 'check' : 'times'} mr-1"></i>
+                            Your answer: ${q.options[userAnswers[i]]}
+                        </p>
+                        <p class="text-sm text-gray-700">
+                            <span class="font-medium">Correct answer:</span> ${q.options[q.answer]}
+                        </p>
+                        <p class="text-xs text-gray-600 mt-2 italic">${q.explanation}</p>
+                    </div>
+                `;
+            });
+            
+            // Update results display
+            scoreDisplay.textContent = score;
+            const percentage = Math.round((score / questions.length) * 100);
+            percentageDisplay.textContent = percentage + '%';
+            resultsProgress.style.width = percentage + '%';
+            answersReview.innerHTML = reviewHtml;
+        }
+    </script>
+    <!-- Add JavaScript for mobile menu toggle -->
+  <script>
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+  </script>
+</body>
+</html>

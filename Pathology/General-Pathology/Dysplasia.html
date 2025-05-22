@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Understanding Dysplasia</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .progress-bar {
+            transition: width 0.5s ease-in-out;
+        }
+        .lesson-card {
+            transition: all 0.3s ease;
+        }
+        .lesson-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        .test-option {
+            transition: all 0.2s ease;
+        }
+        .test-option:hover {
+            transform: scale(1.02);
+            background-color: #f0f9ff;
+        }
+        .highlight {
+            background-color: #fffbeb;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .comparison-table {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1px;
+            background-color: #e5e7eb;
+        }
+        .comparison-cell {
+            background-color: white;
+            padding: 12px;
+        }
+        .grade-indicator {
+            width: 100%;
+            height: 8px;
+            border-radius: 4px;
+        }
+        .dysplasia-spectrum {
+            position: relative;
+            height: 60px;
+            margin: 30px 0;
+        }
+        .spectrum-bar {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(to right, #10b981, #f59e0b, #ef4444);
+            transform: translateY(-50%);
+        }
+        .spectrum-marker {
+            position: absolute;
+            top: 50%;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .spectrum-label {
+            position: absolute;
+            top: 100%;
+            transform: translateX(-50%);
+            white-space: nowrap;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+    <!-- Navigation -->
+ <nav class="bg-white shadow-md sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-16 items-center">
+        <div class="flex items-center space-x-2">
+            <i><img src="../../logo.png" alt="logo" width="50px" ></i>
+            <span class="text-xl font-bold text-blue-600">MatEazy</span>
+        </div>
+        <div class="hidden md:flex space-x-6">
+          <a href="../../index.html" class="hover:text-blue-600 font-medium">Home</a>
+          <a href="../../courses.html" class="hover:text-blue-600 font-medium"><i class="fas fa-search"></i>Search</a>
+          <a href="http://buymeacoffee.com/MatEazy" class="bg-blue-600 text-white px-1 py-1 rounded-lg hover:bg-green-700 transition">Donate</a>
+        </div>
+        <!-- Mobile menu button -->
+        <div class="md:hidden">
+          <button id="menu-btn" class="text-gray-800 focus:outline-none">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
+              viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+      <!-- Mobile menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200">
+      <a href="../../index.html" class="block px-4 py-2 hover:bg-gray-100">Home</a>
+      <a href="../../courses.html" class="block px-4 py-2 hover:bg-gray-100"><i class="fas fa-search"></i>Search</a>
+      <a href="http://buymeacoffee.com/MatEazy" class="block px-4 py-2 bg-blue-600 text-white hover:bg-green-700 transition">Donate</a>
+    </div>    
+ </nav>
+    <div class="container mx-auto px-4 py-8 max-w-4xl">
+        <!-- Header -->
+        <header class="text-center mb-12">
+            <h1 class="text-4xl font-bold text-indigo-800 mb-2">Understanding Dysplasia</h1>
+            <p class="text-gray-600">A comprehensive lesson on abnormal cellular growth and its clinical significance</p>
+            <a href="cell-adaptation.html">
+                <div class="bg-gray-200 text-gray-700 px-6 py-2 rounded-lg hover:bg-gray-300 disabled:opacity-50">
+                   <i class="fas fa-arrow-left mr-2"></i> Cell adaptation
+                </div>
+            </a>
+            <div class="w-full bg-gray-200 rounded-full h-2.5 mt-6">
+                <div id="progress" class="progress-bar bg-indigo-600 h-2.5 rounded-full" style="width: 0%"></div>
+            </div>
+        </header>
+
+        <!-- Lesson Content -->
+        <div id="lesson-content" class="space-y-8">
+            <!-- Introduction -->
+            <div class="lesson-card bg-white p-6 rounded-xl shadow-md">
+                <div class="flex items-center mb-4">
+                    <div class="bg-indigo-100 p-3 rounded-full mr-4">
+                        <i class="fas fa-info-circle text-indigo-600 text-xl"></i>
+                    </div>
+                    <h2 class="text-2xl font-semibold text-gray-800">What is Dysplasia?</h2>
+                </div>
+                <p class="text-gray-700 mb-4">
+                    <span class="highlight">Dysplasia</span> refers to abnormal cellular growth with altered size, shape, and organization. It represents a step toward neoplastic transformation, existing on a spectrum of cellular abnormalities that may progress to cancer.
+                </p>
+                
+                <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-500 mt-4">
+                    <p class="text-blue-800">
+                        <i class="fas fa-lightbulb mr-2"></i> <strong>Key Point:</strong> Dysplasia is characterized by cellular abnormalities but without invasion through the basement membrane. Once invasion occurs, it becomes invasive carcinoma.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Normal vs Dysplastic -->
+            <div class="lesson-card bg-white p-6 rounded-xl shadow-md">
+                <div class="flex items-center mb-4">
+                    <div class="bg-green-100 p-3 rounded-full mr-4">
+                        <i class="fas fa-not-equal text-green-600 text-xl"></i>
+                    </div>
+                    <h2 class="text-2xl font-semibold text-gray-800">Normal vs. Dysplastic Cells</h2>
+                </div>
+                
+                <div class="comparison-table border border-gray-200 rounded-lg overflow-hidden mt-6">
+                    <div class="comparison-cell font-semibold bg-gray-50 text-center">Feature</div>
+                    <div class="comparison-cell font-semibold bg-gray-50 text-center">Normal Cells</div>
+                    <div class="comparison-cell font-semibold bg-gray-50 text-center">Dysplastic Cells</div>
+                    <div class="comparison-cell font-semibold bg-gray-50 text-center">Clinical Significance</div>
+                    
+                    <div class="comparison-cell">Size & Shape</div>
+                    <div class="comparison-cell">Uniform</div>
+                    <div class="comparison-cell">Variable (pleomorphism)</div>
+                    <div class="comparison-cell">Increased variation correlates with severity</div>
+                    
+                    <div class="comparison-cell">Nuclei</div>
+                    <div class="comparison-cell">Regular, small</div>
+                    <div class="comparison-cell">Enlarged, irregular</div>
+                    <div class="comparison-cell">Nuclear changes are hallmark features</div>
+                    
+                    <div class="comparison-cell">Chromatin</div>
+                    <div class="comparison-cell">Fine, evenly distributed</div>
+                    <div class="comparison-cell">Coarse, clumped</div>
+                    <div class="comparison-cell">Reflects genetic instability</div>
+                    
+                    <div class="comparison-cell">Organization</div>
+                    <div class="comparison-cell">Ordered maturation</div>
+                    <div class="comparison-cell">Disorganized architecture</div>
+                    <div class="comparison-cell">Loss of normal tissue structure</div>
+                </div>
+            </div>
+
+            <!-- Grades of Dysplasia -->
+            <div class="lesson-card bg-white p-6 rounded-xl shadow-md">
+                <div class="flex items-center mb-4">
+                    <div class="bg-purple-100 p-3 rounded-full mr-4">
+                        <i class="fas fa-chart-line text-purple-600 text-xl"></i>
+                    </div>
+                    <h2 class="text-2xl font-semibold text-gray-800">Grades of Dysplasia</h2>
+                </div>
+                
+                <div class="dysplasia-spectrum">
+                    <div class="spectrum-bar"></div>
+                    <div class="spectrum-marker bg-green-500" style="left: 10%"></div>
+                    <div class="spectrum-marker bg-yellow-500" style="left: 50%"></div>
+                    <div class="spectrum-marker bg-red-500" style="left: 90%"></div>
+                    
+                    <div class="spectrum-label text-sm font-medium" style="left: 10%">Mild</div>
+                    <div class="spectrum-label text-sm font-medium" style="left: 50%">Moderate</div>
+                    <div class="spectrum-label text-sm font-medium" style="left: 90%">Severe</div>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-4 mt-6">
+                    <div class="border border-gray-200 rounded-lg p-4">
+                        <h3 class="font-semibold text-green-700 mb-2">Mild Dysplasia</h3>
+                        <div class="grade-indicator bg-green-100 mb-3"></div>
+                        <ul class="text-sm text-gray-700 space-y-1">
+                            <li><i class="fas fa-check-circle text-green-500 mr-1"></i> Minimal abnormalities</li>
+                            <li><i class="fas fa-check-circle text-green-500 mr-1"></i> Confined to basal layer</li>
+                            <li><i class="fas fa-check-circle text-green-500 mr-1"></i> Often reversible</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="border border-gray-200 rounded-lg p-4">
+                        <h3 class="font-semibold text-yellow-700 mb-2">Moderate Dysplasia</h3>
+                        <div class="grade-indicator bg-yellow-100 mb-3"></div>
+                        <ul class="text-sm text-gray-700 space-y-1">
+                            <li><i class="fas fa-exclamation-triangle text-yellow-500 mr-1"></i> Abnormalities extend to middle third</li>
+                            <li><i class="fas fa-exclamation-triangle text-yellow-500 mr-1"></i> Pronounced nuclear changes</li>
+                            <li><i class="fas fa-exclamation-triangle text-yellow-500 mr-1"></i> Requires close monitoring</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="border border-gray-200 rounded-lg p-4">
+                        <h3 class="font-semibold text-red-700 mb-2">Severe Dysplasia</h3>
+                        <div class="grade-indicator bg-red-100 mb-3"></div>
+                        <ul class="text-sm text-gray-700 space-y-1">
+                            <li><i class="fas fa-times-circle text-red-500 mr-1"></i> Marked abnormalities</li>
+                            <li><i class="fas fa-times-circle text-red-500 mr-1"></i> Full thickness involvement</li>
+                            <li><i class="fas fa-times-circle text-red-500 mr-1"></i> Considered carcinoma in situ</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="bg-red-50 p-4 rounded-lg mt-6">
+                    <p class="text-red-800">
+                        <i class="fas fa-exclamation-circle mr-2"></i> <strong>Important:</strong> The distinction between severe dysplasia and carcinoma in situ varies by organ system, but both represent the highest grade of pre-invasive disease.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Clinical Examples -->
+            <div class="lesson-card bg-white p-6 rounded-xl shadow-md">
+                <div class="flex items-center mb-4">
+                    <div class="bg-teal-100 p-3 rounded-full mr-4">
+                        <i class="fas fa-stethoscope text-teal-600 text-xl"></i>
+                    </div>
+                    <h2 class="text-2xl font-semibold text-gray-800">Clinical Examples of Dysplasia</h2>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-6 mt-6">
+                    <div class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
+                        <div class="flex items-center mb-2">
+                            <div class="bg-pink-100 p-2 rounded-full mr-3">
+                                <i class="fas fa-female text-pink-600"></i>
+                            </div>
+                            <h3 class="font-semibold text-gray-800">Cervical Dysplasia</h3>
+                        </div>
+                        <p class="text-sm text-gray-700 mb-2">
+                            Caused by persistent HPV infection. Classified as CIN (cervical intraepithelial neoplasia) grades 1-3 or as low/high-grade squamous intraepithelial lesions (LSIL/HSIL).
+                        </p>
+                        <div class="bg-blue-50 p-2 rounded text-xs text-blue-700">
+                            <i class="fas fa-search mr-1"></i> Detected by Pap smear screening
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
+                        <div class="flex items-center mb-2">
+                            <div class="bg-green-100 p-2 rounded-full mr-3">
+                                <i class="fas fa-colon text-green-600"></i>
+                            </div>
+                            <h3 class="font-semibold text-gray-800">Colonic Dysplasia</h3>
+                        </div>
+                        <p class="text-sm text-gray-700 mb-2">
+                            Seen in long-standing IBD (ulcerative colitis, Crohn's). Risk increases after 8-10 years of disease. Requires surveillance colonoscopies with biopsies.
+                        </p>
+                        <div class="bg-yellow-50 p-2 rounded text-xs text-yellow-700">
+                            <i class="fas fa-clock mr-1"></i> Time-dependent risk
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
+                        <div class="flex items-center mb-2">
+                            <div class="bg-orange-100 p-2 rounded-full mr-3">
+                                <i class="fas fa-teeth text-orange-600"></i>
+                            </div>
+                            <h3 class="font-semibold text-gray-800">Oral Dysplasia</h3>
+                        </div>
+                        <p class="text-sm text-gray-700 mb-2">
+                            Often presents as leukoplakia (white patches). Strongly associated with tobacco use. Requires biopsy for definitive diagnosis and grading.
+                        </p>
+                        <div class="bg-red-50 p-2 rounded text-xs text-red-700">
+                            <i class="fas fa-smoking mr-1"></i> Tobacco-related
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-teal-50 p-4 rounded-lg mt-6">
+                    <p class="text-teal-800">
+                        <i class="fas fa-clipboard-check mr-2"></i> <strong>Clinical Approach:</strong> Management depends on grade and location. Options range from surveillance (mild) to excision (severe). All high-grade dysplasias require intervention.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Summary -->
+            <div class="lesson-card bg-white p-6 rounded-xl shadow-md border-2 border-indigo-200">
+                <div class="flex items-center mb-4">
+                    <div class="bg-indigo-100 p-3 rounded-full mr-4">
+                        <i class="fas fa-book-open text-indigo-600 text-xl"></i>
+                    </div>
+                    <h2 class="text-2xl font-semibold text-gray-800">Lesson Summary</h2>
+                </div>
+                
+                <div class="space-y-4 text-gray-700">
+                    <p>
+                        Dysplasia represents abnormal cellular growth with altered size, shape, and organization. It exists on a spectrum from mild to severe (carcinoma in situ) and has potential to progress to invasive cancer if untreated.
+                    </p>
+                    <p>
+                        Key features include cellular pleomorphism, nuclear abnormalities, and architectural distortion. Clinical examples include cervical (HPV-related), colonic (IBD-related), and oral (tobacco-related) dysplasias.
+                    </p>
+                </div>
+                
+                <div class="mt-6 bg-indigo-50 p-4 rounded-lg">
+                    <h3 class="font-semibold text-indigo-800 mb-2"><i class="fas fa-brain mr-2"></i>Takeaway Concept:</h3>
+                    <p class="text-indigo-700">
+                        Dysplasia = Precancerous cellular abnormalities | Graded mild/moderate/severe | Requires appropriate monitoring/intervention
+                    </p>
+                </div>
+            </div>
+
+            <!-- Next Button -->
+            <div class="flex justify-center mt-10">
+                <button id="start-test-btn" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-8 rounded-full transition duration-300 transform hover:scale-105 shadow-lg">
+                    <i class="fas fa-graduation-cap mr-2"></i> Take the Knowledge Test
+                </button>
+            </div>
+        </div>
+
+        <!-- Test Section (Hidden Initially) -->
+        <div id="test-section" class="hidden">
+            <div class="bg-white p-8 rounded-xl shadow-lg">
+                <h2 class="text-3xl font-bold text-center text-indigo-800 mb-2">Dysplasia Knowledge Test</h2>
+                <p class="text-center text-gray-600 mb-8">Answer these 5 questions to test your understanding</p>
+                
+                <div id="test-questions" class="space-y-8">
+                    <!-- Question 1 -->
+                    <div class="test-question fade-in">
+                        <div class="flex items-center mb-4">
+                            <span class="bg-indigo-600 text-white font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3">1</span>
+                            <h3 class="text-xl font-semibold text-gray-800">Which feature is most characteristic of dysplastic cells?</h3>
+                        </div>
+                        <div class="space-y-3 ml-11">
+                            <div class="test-option p-4 border border-gray-200 rounded-lg cursor-pointer" data-correct="false">
+                                <span class="font-medium">A.</span> Increased cytoplasmic volume
+                            </div>
+                            <div class="test-option p-4 border border-gray-200 rounded-lg cursor-pointer" data-correct="false">
+                                <span class="font-medium">B.</span> Presence of viral inclusions
+                            </div>
+                            <div class="test-option p-4 border border-gray-200 rounded-lg cursor-pointer" data-correct="true">
+                                <span class="font-medium">C.</span> Nuclear enlargement and irregularity
+                            </div>
+                            <div class="test-option p-4 border border-gray-200 rounded-lg cursor-pointer" data-correct="false">
+                                <span class="font-medium">D.</span> Increased mitotic figures in all layers
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Question 2 -->
+                    <div class="test-question hidden fade-in">
+                        <div class="flex items-center mb-4">
+                            <span class="bg-indigo-600 text-white font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3">2</span>
+                            <h3 class="text-xl font-semibold text-gray-800">What distinguishes severe dysplasia from invasive carcinoma?</h3>
+                        </div>
+                        <div class="space-y-3 ml-11">
+                            <div class="test-option p-4 border border-gray-200 rounded-lg cursor-pointer" data-correct="false">
+                                <span class="font-medium">A.</span> Degree of nuclear atypia
+                            </div>
+                            <div class="test-option p-4 border border-gray-200 rounded-lg cursor-pointer" data-correct="false">
+                                <span class="font-medium">B.</span> Presence of mitotic figures
+                            </div>
+                            <div class="test-option p-4 border border-gray-200 rounded-lg cursor-pointer" data-correct="true">
+                                <span class="font-medium">C.</span> Integrity of the basement membrane
+                            </div>
+                            <div class="test-option p-4 border border-gray-200 rounded-lg cursor-pointer" data-correct="false">
+                                <span class="font-medium">D.</span> Number of cell layers affected
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Question 3 -->
+                    <div class="test-question hidden fade-in">
+                        <div class="flex items-center mb-4">
+                            <span class="bg-indigo-600 text-white font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3">3</span>
+                            <h3 class="text-xl font-semibold text-gray-800">Which statement about cervical dysplasia is correct?</h3>
+                        </div>
+                        <div class="space-y-3 ml-11">
+                            <div class="test-option p-4 border border-gray-200 rounded-lg cursor-pointer" data-correct="false">
+                                <span class="font-medium">A.</span> It's most commonly caused by HSV infection
+                            </div>
+                            <div class="test-option p-4 border border-gray-200 rounded-lg cursor-pointer" data-correct="true">
+                                <span class="font-medium">B.</span> It's classified as CIN or SIL based on histology
+                            </div>
+                            <div class="test-option p-4 border border-gray-200 rounded-lg cursor-pointer" data-correct="false">
+                                <span class="font-medium">C.</span> Low-grade lesions never progress to cancer
+                            </div>
+                            <div class="test-option p-4 border border-gray-200 rounded-lg cursor-pointer" data-correct="false">
+                                <span class="font-medium">D.</span> It's equally common in all age groups
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Question 4 -->
+                    <div class="test-question hidden fade-in">
+                        <div class="flex items-center mb-4">
+                            <span class="bg-indigo-600 text-white font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3">4</span>
+                            <h3 class="text-xl font-semibold text-gray-800">A patient with ulcerative colitis for 12 years should be monitored for:</h3>
+                        </div>
+                        <div class="space-y-3 ml-11">
+                            <div class="test-option p-4 border border-gray-200 rounded-lg cursor-pointer" data-correct="false">
+                                <span class="font-medium">A.</span> Gastric dysplasia
+                            </div>
+                            <div class="test-option p-4 border border-gray-200 rounded-lg cursor-pointer" data-correct="false">
+                                <span class="font-medium">B.</span> Esophageal dysplasia
+                            </div>
+                            <div class="test-option p-4 border border-gray-200 rounded-lg cursor-pointer" data-correct="true">
+                                <span class="font-medium">C.</span> Colonic dysplasia
+                            </div>
+                            <div class="test-option p-4 border border-gray-200 rounded-lg cursor-pointer" data-correct="false">
+                                <span class="font-medium">D.</span> Hepatocellular dysplasia
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Question 5 -->
+                    <div class="test-question hidden fade-in">
+                        <div class="flex items-center mb-4">
+                            <span class="bg-indigo-600 text-white font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3">5</span>
+                            <h3 class="text-xl font-semibold text-gray-800">Which feature is NOT characteristic of dysplasia?</h3>
+                        </div>
+                        <div class="space-y-3 ml-11">
+                            <div class="test-option p-4 border border-gray-200 rounded-lg cursor-pointer" data-correct="false">
+                                <span class="font-medium">A.</span> Loss of cellular polarity
+                            </div>
+                            <div class="test-option p-4 border border-gray-200 rounded-lg cursor-pointer" data-correct="false">
+                                <span class="font-medium">B.</span> Increased nuclear:cytoplasmic ratio
+                            </div>
+                            <div class="test-option p-4 border border-gray-200 rounded-lg cursor-pointer" data-correct="true">
+                                <span class="font-medium">C.</span> Invasion through basement membrane
+                            </div>
+                            <div class="test-option p-4 border border-gray-200 rounded-lg cursor-pointer" data-correct="false">
+                                <span class="font-medium">D.</span> Cellular pleomorphism
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Navigation and Submit -->
+                <div class="flex justify-between mt-10">
+                    <button id="prev-btn" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-6 rounded-lg transition duration-300 hidden">
+                        <i class="fas fa-arrow-left mr-2"></i> Previous
+                    </button>
+                    <button id="next-btn" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-6 rounded-lg transition duration-300 ml-auto">
+                        Next <i class="fas fa-arrow-right ml-2"></i>
+                    </button>
+                    <button id="submit-btn" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-lg transition duration-300 hidden">
+                        Submit Test <i class="fas fa-paper-plane ml-2"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Section (Hidden Initially) -->
+        <div id="results-section" class="hidden">
+            <div class="bg-white p-8 rounded-xl shadow-lg text-center">
+                <div class="mb-6">
+                    <i class="fas fa-award text-6xl text-yellow-500 mb-4"></i>
+                    <h2 class="text-3xl font-bold text-indigo-800 mb-2">Test Results</h2>
+                    <p class="text-gray-600">Your performance on the Dysplasia Knowledge Test</p>
+                </div>
+                
+                <div class="bg-indigo-50 p-6 rounded-lg max-w-md mx-auto mb-8">
+                    <div class="text-5xl font-bold text-indigo-700 mb-2" id="score-display">0/5</div>
+                    <div class="h-4 bg-gray-200 rounded-full mb-4">
+                        <div id="score-bar" class="h-4 rounded-full bg-gradient-to-r from-blue-500 to-indigo-600" style="width: 0%"></div>
+                    </div>
+                    <p class="text-gray-700" id="result-message">Loading your results...</p>
+                </div>
+                
+                <div class="space-y-4 max-w-md mx-auto text-left mb-8 hidden" id="answers-review">
+                    <h3 class="font-semibold text-lg text-gray-800">Question Review:</h3>
+                    <div id="answers-container"></div>
+                </div>
+                
+                <div class="flex justify-center space-x-4">
+                    <button id="retake-btn" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-6 rounded-lg transition duration-300">
+                        <i class="fas fa-redo mr-2"></i> Retake Test
+                    </button>
+                    <button id="review-btn" class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-6 rounded-lg transition duration-300">
+                        <i class="fas fa-book mr-2"></i> Review Lesson
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Track current question and user answers
+        let currentQuestion = 0;
+        let userAnswers = [];
+        const totalQuestions = document.querySelectorAll('.test-question').length;
+        
+        // DOM Elements
+        const lessonContent = document.getElementById('lesson-content');
+        const testSection = document.getElementById('test-section');
+        const resultsSection = document.getElementById('results-section');
+        const startTestBtn = document.getElementById('start-test-btn');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const submitBtn = document.getElementById('submit-btn');
+        const retakeBtn = document.getElementById('retake-btn');
+        const reviewBtn = document.getElementById('review-btn');
+        const scoreDisplay = document.getElementById('score-display');
+        const scoreBar = document.getElementById('score-bar');
+        const resultMessage = document.getElementById('result-message');
+        const answersReview = document.getElementById('answers-review');
+        const answersContainer = document.getElementById('answers-container');
+        const progressBar = document.getElementById('progress');
+        
+        // Initialize test
+        function initTest() {
+            currentQuestion = 0;
+            userAnswers = Array(totalQuestions).fill(null);
+            showQuestion(currentQuestion);
+            updateNavigation();
+        }
+        
+        // Show specific question
+        function showQuestion(index) {
+            document.querySelectorAll('.test-question').forEach((q, i) => {
+                q.classList.toggle('hidden', i !== index);
+            });
+            
+            // Update progress bar
+            progressBar.style.width = `${((index + 1) / totalQuestions) * 100}%`;
+        }
+        
+        // Update navigation buttons
+        function updateNavigation() {
+            prevBtn.classList.toggle('hidden', currentQuestion === 0);
+            nextBtn.classList.toggle('hidden', currentQuestion === totalQuestions - 1);
+            submitBtn.classList.toggle('hidden', currentQuestion !== totalQuestions - 1);
+        }
+        
+        // Calculate score
+        function calculateScore() {
+            let score = 0;
+            const questions = document.querySelectorAll('.test-question');
+            
+            questions.forEach((q, index) => {
+                const options = q.querySelectorAll('.test-option');
+                const selectedOption = userAnswers[index];
+                
+                if (selectedOption !== null) {
+                    const isCorrect = options[selectedOption].getAttribute('data-correct') === 'true';
+                    if (isCorrect) score++;
+                }
+            });
+            
+            return score;
+        }
+        
+        // Show results
+        function showResults() {
+            const score = calculateScore();
+            const percentage = (score / totalQuestions) * 100;
+            
+            scoreDisplay.textContent = `${score}/${totalQuestions}`;
+            scoreBar.style.width = `${percentage}%`;
+            
+            // Set result message based on score
+            if (percentage >= 80) {
+                resultMessage.textContent = "Excellent! You have mastered the concepts of dysplasia.";
+            } else if (percentage >= 60) {
+                resultMessage.textContent = "Good job! You understand the basics but could review some concepts.";
+            } else {
+                resultMessage.textContent = "Keep practicing! Review the lesson and try again.";
+            }
+            
+            // Generate answer review
+            answersContainer.innerHTML = '';
+            document.querySelectorAll('.test-question').forEach((q, index) => {
+                const questionText = q.querySelector('h3').textContent;
+                const options = q.querySelectorAll('.test-option');
+                const selectedOption = userAnswers[index];
+                const isCorrect = selectedOption !== null ? 
+                    options[selectedOption].getAttribute('data-correct') === 'true' : false;
+                
+                const answerItem = document.createElement('div');
+                answerItem.className = `p-3 rounded-lg mb-2 ${isCorrect ? 'bg-green-50 border border-green-200' : 'bg-red-50 border border-red-200'}`;
+                
+                let answerHtml = `<div class="font-medium mb-1">${index + 1}. ${questionText}</div>`;
+                
+                if (selectedOption !== null) {
+                    const selectedText = options[selectedOption].textContent.trim();
+                    answerHtml += `<div class="text-sm ${isCorrect ? 'text-green-700' : 'text-red-700'}">Your answer: ${selectedText}</div>`;
+                    
+                    if (!isCorrect) {
+                        // Find correct answer
+                        let correctAnswer = '';
+                        options.forEach(opt => {
+                            if (opt.getAttribute('data-correct') === 'true') {
+                                correctAnswer = opt.textContent.trim();
+                            }
+                        });
+                        answerHtml += `<div class="text-sm text-green-700">Correct answer: ${correctAnswer}</div>`;
+                    }
+                } else {
+                    answerHtml += `<div class="text-sm text-red-700">You didn't answer this question</div>`;
+                }
+                
+                answerItem.innerHTML = answerHtml;
+                answersContainer.appendChild(answerItem);
+            });
+            
+            answersReview.classList.remove('hidden');
+        }
+        
+        // Event Listeners
+        startTestBtn.addEventListener('click', () => {
+            lessonContent.classList.add('hidden');
+            testSection.classList.remove('hidden');
+            resultsSection.classList.add('hidden');
+            initTest();
+        });
+        
+        prevBtn.addEventListener('click', () => {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                showQuestion(currentQuestion);
+                updateNavigation();
+            }
+        });
+        
+        nextBtn.addEventListener('click', () => {
+            if (currentQuestion < totalQuestions - 1) {
+                currentQuestion++;
+                showQuestion(currentQuestion);
+                updateNavigation();
+            }
+        });
+        
+        submitBtn.addEventListener('click', () => {
+            testSection.classList.add('hidden');
+            resultsSection.classList.remove('hidden');
+            showResults();
+        });
+        
+        retakeBtn.addEventListener('click', () => {
+            resultsSection.classList.add('hidden');
+            testSection.classList.remove('hidden');
+            initTest();
+        });
+        
+        reviewBtn.addEventListener('click', () => {
+            resultsSection.classList.add('hidden');
+            lessonContent.classList.remove('hidden');
+            progressBar.style.width = '0%';
+        });
+        
+        // Option selection
+        document.querySelectorAll('.test-option').forEach(option => {
+            option.addEventListener('click', function() {
+                const questionIndex = parseInt(this.closest('.test-question').querySelector('span').textContent) - 1;
+                const optionIndex = Array.from(this.parentNode.children).indexOf(this);
+                userAnswers[questionIndex] = optionIndex;
+                
+                // Update UI
+                this.parentNode.querySelectorAll('.test-option').forEach(opt => {
+                    opt.classList.remove('border-indigo-500', 'bg-indigo-50');
+                });
+                this.classList.add('border-indigo-500', 'bg-indigo-50');
+            });
+        });
+        
+        // Scroll progress for lesson
+        window.addEventListener('scroll', function() {
+            if (lessonContent.classList.contains('hidden')) return;
+            
+            const scrollTop = window.scrollY;
+            const docHeight = document.body.scrollHeight;
+            const winHeight = window.innerHeight;
+            const scrollPercent = scrollTop / (docHeight - winHeight);
+            const scrollPercentRounded = Math.round(scrollPercent * 100);
+            
+            progressBar.style.width = `${scrollPercentRounded}%`;
+        });
+    </script>
+    <!-- Add JavaScript for mobile menu toggle -->
+  <script>
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+  </script>
+</body>
+</html>
