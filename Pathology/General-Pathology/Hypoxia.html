@@ -74,9 +74,25 @@
         .hypoxia-type-card:hover {
             transform: translateX(5px);
         }
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
     </style>
 </head>
-<body class="bg-gray-50 min-h-screen">
+<body class="bg-gray-50 font-sans">
     <!-- Navigation -->
  <nav class="bg-white shadow-md sticky top-0 z-50">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -108,7 +124,7 @@
       <a href="http://buymeacoffee.com/MatEazy" class="block px-4 py-2 bg-blue-600 text-white hover:bg-green-700 transition">Donate</a>
     </div>    
  </nav>
-    <div class="container mx-auto px-4 py-8 max-w-4xl">
+    <div class="container mx-auto px-4 py-8 max-w-6xl">
         <!-- Header -->
         <header class="mb-8 text-center">
             <h1 class="text-4xl font-bold text-blue-800 mb-2">Understanding Hypoxia</h1>
@@ -122,6 +138,20 @@
                 <div id="progress-fill" class="progress-fill" style="width: 0%"></div>
             </div>
         </header>
+        <!-- Video Section -->
+        <div class="mb-12">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4 flex items-center">
+                <i class="fas fa-video mr-3 text-blue-600"></i> Introduction to Hypoxia
+            </h2>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/4DcBYaUKbNE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-500 mt-4">
+                <p class="text-blue-800">
+                    <i class="fas fa-lightbulb mr-2"></i> <strong>Key Concept:</strong> Watch this video to understand the fundamental concepts of Hypoxia before diving into the interactive lessons.
+                </p>
+            </div>
+        </div>
         
         <!-- Lesson Content -->
         <div id="lesson-content">
